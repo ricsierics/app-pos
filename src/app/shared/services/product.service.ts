@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
-import { Product } from 'src/app/shared/models/Product';
-import { catchError, tap } from 'rxjs/operators';
+import { Product } from '../models/Product';
+import { catchError, tap, map } from 'rxjs/operators';
 
 const inMemoryCollectionName = "products";
 const baseUrl: string = `api/${inMemoryCollectionName}`;
@@ -21,6 +21,13 @@ export class ProductService {
     return this._http.get<Product[]>(baseUrl).pipe(
       tap(result => { this.log("Fetched products: "); console.log(result) }),
       catchError(this.handleError('getAll', []))
+    );
+  }
+
+  getById(id: number): Observable<Product>{
+    return this._http.get<Product>(`${baseUrl}/${id}`).pipe(
+      tap(result => { this.log("Fetched product by id: "); console.log(result) }),
+      catchError(this.handleError('getAll', null))
     );
   }
 
@@ -46,6 +53,20 @@ export class ProductService {
       catchError(this.handleError<any>('delete'))
     );
   }
+
+  decrementStock(productId: number, decrementBy: number) {
+    let product: Product;
+    this.getById(productId).pipe(
+      map(result => {
+        product = result;
+        console.log("Decrement Stock:");
+        console.log(product);
+        product.stockQty -= decrementBy;
+        return this.edit(product); //.subscribe(() => console.log("Decrement complete"));
+      })  
+    );
+    
+   }
 
   private log(message: string){
     console.log(message);

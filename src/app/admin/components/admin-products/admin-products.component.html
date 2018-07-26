@@ -1,10 +1,29 @@
 <admin-add-product (onAddEmitter)="addProduct($event)"></admin-add-product>
 
-<div class="list">
-  <h1>Product List: {{ this.products.length}}</h1>
-  <div class="item" *ngFor="let product of products">
-    <p>{{ product.name }}</p>
-    <admin-edit-product [model]="product" (onEditEmitter)="getProducts()"></admin-edit-product>
-    <button (click)="deleteProduct(product)">Delete</button>
-  </div>
-</div>
+<table class="table">
+  <thead>
+    <tr>
+        <th>CODE</th>
+        <th>NAME</th>
+        <th>DESCRIPTION</th>
+        <th>STOCK QTY</th>
+        <th>PRICE</th>
+        <th>ACTION</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let product of products">
+      <td>{{ product.code }}</td>
+      <td>{{ product.name }}</td>
+      <td>{{ product.description }}</td>
+      <td>{{ product.stockQty }}</td>
+      <td>{{ product.price }}</td>
+      <td>
+        <div>
+            <admin-edit-product [model]="product" (onEditEmitter)="getProducts()"></admin-edit-product>
+            <button (click)="deleteProduct(product)">Delete</button>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>

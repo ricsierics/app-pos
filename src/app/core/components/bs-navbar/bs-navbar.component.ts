@@ -12,4 +12,8 @@ export class BsNavbarComponent implements OnInit {
   ngOnInit() {
   }
 
+  logout(){
+    console.log("LOG OUT");
+  }
+
 }

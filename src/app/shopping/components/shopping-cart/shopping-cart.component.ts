@@ -18,8 +18,7 @@ export class ShoppingCartComponent implements OnInit {
   }
 
   getGroupedItems(): GroupedItem[] {
-    let items = Array.from(this.cart.items.values());
-    console.log(items);
-    return items;
+    let groupedItems = Array.from(this.cart.items.values());
+    return groupedItems;
   }
 }

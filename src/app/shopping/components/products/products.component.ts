@@ -22,6 +22,6 @@ export class ProductsComponent implements OnInit {
     console.log(product);
     
     this._cartService.addToCart(product);
-
+    //this._productService.decrementStock(product.id, 1);
   }
 }

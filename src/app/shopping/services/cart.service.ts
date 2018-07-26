@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Cart } from '../../shared/models/Cart';
 import { Product } from '../../shared/models/Product';
+import { ProductService } from '../../shared/services/product.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
   cart: Cart;
-  constructor() {
+  constructor(private _productService: ProductService) {
     this.cart = new Cart;
 
     console.log("Cart service initialized:");
