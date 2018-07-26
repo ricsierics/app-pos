@@ -27,6 +27,7 @@ export class AdminProductFormComponent implements OnInit {
 
   createForm(){
     this.form = this.fb.group({
+      id: [this.model.id],
       code: [this.model.code],
       name: ['', [Validators.required]],
       description: ['', Validators.required],
@@ -42,6 +43,7 @@ export class AdminProductFormComponent implements OnInit {
   }
 
   bindModelToForm(){
+    this.id.setValue(this.model.id);
     this.code.setValue(this.model.code);
     this.name.setValue(this.model.name);
     this.description.setValue(this.model.description);
@@ -49,6 +51,10 @@ export class AdminProductFormComponent implements OnInit {
     this.stockQty.setValue(this.model.stockQty);
     this.uom.setValue(this.model.uom);
     this.expiration.setValue(this.model.expiration);
+  }
+
+  get id(){
+    return this.form.get('id');
   }
 
   get code(){

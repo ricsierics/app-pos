@@ -33,23 +33,19 @@ export class ProductService {
   }
 
   add(newProduct: Product): Observable<Product> {
-    console.log("From Service:");
-    console.log(newProduct);
-
     newProduct.code = Product.generateCode();
-
     return this._http.post<Product>(baseUrl, newProduct, httpOptions).pipe(
       tap((addedProduct: Product) => this.log(`added product w/ code = ${addedProduct.code}`)),
       catchError(this.handleError<Product>('add'))
     );
   }
 
-  // edit(existingProduct: Product): Observable<Product>{
-  //   return this._http.put(baseUrl, existingProduct, httpOptions).pipe(
-  //     tap(() => this.log(`updated product with id = ${existingProduct.id}`)),
-  //     catchError(this.handleError<any>('update'))
-  //   );
-  // }
+  edit(existingProduct: Product): Observable<Product>{
+    return this._http.put(baseUrl, existingProduct, httpOptions).pipe(
+      tap(result => this.log(`edited product with id = ${existingProduct.id}`)),
+      catchError(this.handleError<any>('edit'))
+    );
+  }
   
   delete(id: number): Observable<Product> {
     const url = `${baseUrl}/${id}`;

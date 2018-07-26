@@ -7,6 +7,7 @@ import { RouterModule } from '@angular/router';
 import { AdminAddProductComponent } from './components/admin-add-product/admin-add-product.component';
 import { SharedModule } from '../shared/shared.module';
 import { FormsModule } from '@angular/forms';
+import { AdminEditProductComponent } from './components/admin-edit-product/admin-edit-product.component';
 
 @NgModule({
   imports: [
@@ -21,7 +22,8 @@ import { FormsModule } from '@angular/forms';
     AdminOrdersComponent, 
     AdminProductsComponent, 
     AdminProductFormComponent,
-    AdminAddProductComponent
+    AdminAddProductComponent,
+    AdminEditProductComponent
   ]
 })
 export class AdminModule { }

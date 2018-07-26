@@ -1,0 +1,10 @@
+<button (click)="onShowModal()">Edit</button>
+
+<admin-product-form
+ [model]="model"
+ (onBtnPrimaryClickEventEmitter)="onEdit($event)"
+ [modalId]="modalId"
+ [formTitle]="formTitle"
+ [btnPrimaryLabel]="btnPrimaryLabel"
+ [isEditMode]="isEditMode">
+</admin-product-form>

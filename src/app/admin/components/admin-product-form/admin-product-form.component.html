@@ -9,7 +9,11 @@
       </div>
       <div class="modal-body">
         <form [formGroup]="form" (ngSubmit)="onBtnPrimaryClick()">
-          <input hidden formControlName="code">
+          <input hidden formControlName="id">
+          <div *ngIf="isEditMode" class="form-group">
+            <label>Code: {{ this.model.code }}</label>
+          </div>
+
           <div class="formgroup">
             <label>Name:</label>
             <input class="form-control" formControlName="name" placeholder="Product 1" />

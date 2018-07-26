@@ -31,10 +31,6 @@ export class AdminAddProductComponent implements OnInit {
 
   onAdd(f: FormGroup){
     this.newProduct = f.value;
-
-    console.log("From add product:");
-    console.log(this.newProduct);
-
     this._productService.add(this.newProduct).subscribe(
       () => {
         this.onAddEmitter.emit(this.newProduct);
