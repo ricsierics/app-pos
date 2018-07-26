@@ -1,0 +1,9 @@
+<button class="btn btn-primary" (click)="onShowModal()">Add Product</button>
+
+<admin-product-form
+  [formTitle]="formTitle"
+  [btnPrimaryLabel]="btnPrimaryLabel"
+  (onBtnPrimaryClickEventEmitter)="onAdd($event)"
+  [modalId]="modalId"
+  [isEditMode]="isEditMode">
+</admin-product-form>
