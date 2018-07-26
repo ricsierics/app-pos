@@ -4,14 +4,6 @@ import { Observable, of } from 'rxjs';
 import { Product } from 'src/app/shared/models/Product';
 import { catchError, tap } from 'rxjs/operators';
 
-// @Injectable({
-//   providedIn: 'root'
-// })
-// export class ProductService {
-
-//   constructor() { }
-// }
-
 const inMemoryCollectionName = "products";
 const baseUrl: string = `api/${inMemoryCollectionName}`;
 const httpOptions = {
