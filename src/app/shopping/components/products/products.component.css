@@ -1,0 +1,11 @@
+.dynagrid {
+    display: grid;
+    grid-gap: 5px;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    grid-template-rows: repeat(2, 150px);
+}
+
+.dynacell {
+    border: solid 1px;
+    cursor: pointer;
+}

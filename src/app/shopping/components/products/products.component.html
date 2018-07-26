@@ -1,3 +1,7 @@
-<p>
-  products works!
-</p>
+<div class="dynagrid">
+  <div *ngFor="let product of products" class="dynacell" (click)="onSelect(product)">
+     <p>Name: {{ product.name }}</p>
+     <p>Price: {{ product.price}}</p>
+     <p>Stock: {{ product.stockQty}}</p>
+  </div>
+</div>

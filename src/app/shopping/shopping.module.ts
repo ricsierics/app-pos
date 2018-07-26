@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ProductsComponent } from './components/products/products.component';
 import { RouterModule } from '@angular/router';
+import { HomeComponent } from './components/home/home.component';
 
 @NgModule({
   imports: [
@@ -11,7 +12,8 @@ import { RouterModule } from '@angular/router';
     ])
   ],
   declarations: [
-    ProductsComponent
+    ProductsComponent,
+    HomeComponent
   ]
 })
 export class ShoppingModule { }

@@ -8,6 +8,7 @@ import { AdminModule } from './admin/admin.module';
 import { CoreModule } from './core/core.module';
 import { ProductsComponent } from './shopping/components/products/products.component';
 import { ShoppingModule } from './shopping/shopping.module';
+import { HomeComponent } from './shopping/components/home/home.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,7 @@ import { ShoppingModule } from './shopping/shopping.module';
     AdminModule,
     ShoppingModule,
     RouterModule.forRoot([
-      { path: '', component: ProductsComponent }
+      { path: '', component: HomeComponent }
     ])
   ],
   providers: [],
