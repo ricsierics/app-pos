@@ -21,7 +21,13 @@ export class ProductsComponent implements OnInit {
     console.log("Product selected:");
     console.log(product);
     
-    this._cartService.addToCart(product);
-    //this._productService.decrementStock(product.id, 1);
+    
+    this._productService.decrementStock(product.id, 1).subscribe(() => {
+      console.log("inside decrementStock subscription");
+      this._productService.getAll().subscribe((result) => {
+        this.products = result;
+        this._cartService.addToCart(product);
+      });      
+    });
   }
 }

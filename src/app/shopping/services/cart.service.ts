@@ -31,6 +31,8 @@ export class CartService {
 
      console.log("Add to cart:");
      console.log(this.cart);
+
+     //this._productService.decrementStock(product.id, 1)
    }
 
    getCart(): Cart{
