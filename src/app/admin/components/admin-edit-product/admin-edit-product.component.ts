@@ -1,9 +1,7 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ViewChild } from '@angular/core';
 import { Product } from 'src/app/shared/models/Product';
 import { ProductService } from 'src/app/shared/services/product.service';
-import { FormGroup } from '@angular/forms';
-
-declare var $: any;
+import { AdminProductFormComponent } from '../admin-product-form/admin-product-form.component';
 
 @Component({
   selector: 'admin-edit-product',
@@ -17,6 +15,7 @@ export class AdminEditProductComponent implements OnInit {
   btnPrimaryLabel = "Save";
   @Output() onEditEmitter = new EventEmitter;
   isEditMode = true;
+  @ViewChild(AdminProductFormComponent) productForm: AdminProductFormComponent;
   
   constructor(private _service: ProductService) { }
 
@@ -24,14 +23,14 @@ export class AdminEditProductComponent implements OnInit {
     this.modalId = "modalReactiveEditMode" + this.model.id;
   }
 
-  onShowModal(){
-    $('#' + this.modalId).modal('show');
+  onClickEdit(){
+    this.productForm.showForm();
   }
 
-  onEdit(f: FormGroup){
-    this._service.edit(f.value).subscribe(
+  onSave(modifiedProduct: Product){
+    this._service.edit(modifiedProduct).subscribe(
       () => {
-        $('.close').click();
+        this.productForm.closeForm();
         this.onEditEmitter.emit();
       },
       (error: any) => {

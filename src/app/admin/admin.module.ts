@@ -6,14 +6,12 @@ import { AdminProductFormComponent } from './components/admin-product-form/admin
 import { RouterModule } from '@angular/router';
 import { AdminAddProductComponent } from './components/admin-add-product/admin-add-product.component';
 import { SharedModule } from '../shared/shared.module';
-import { FormsModule } from '@angular/forms';
 import { AdminEditProductComponent } from './components/admin-edit-product/admin-edit-product.component';
 
 @NgModule({
   imports: [
     CommonModule,
     SharedModule,
-    FormsModule,
     RouterModule.forChild([
       { path: 'admin/products' , component: AdminProductsComponent }
     ])

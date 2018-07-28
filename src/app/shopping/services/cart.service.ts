@@ -8,15 +8,25 @@ import { ProductService } from '../../shared/services/product.service';
 })
 export class CartService {
   cart: Cart;
+  products: Product[];
+
   constructor(private _productService: ProductService) {
     this.cart = new Cart;
+    //this._productService.;
 
     console.log("Cart service initialized:");
     console.log(this.cart);
    }
 
-   addToCart(product: Product){
-    
+   addToCart(product: Product, qty?: number){
+     if(!qty)
+      qty = 1;
+    //Check if stock is enough vs qty
+    //this._productService.decrementStock(product.id, qty).subscribe();
+
+
+    //If ok, proceed add to cart then decrement stock by qty
+
     let groupedItems = this.cart.items.get(product.id);
     if(groupedItems) {
       let newSubQty = groupedItems.items.push(product);
@@ -33,6 +43,16 @@ export class CartService {
      console.log(this.cart);
 
      //this._productService.decrementStock(product.id, 1)
+   }
+
+   removeFromCart(product: Product){
+    let groupedItems = this.cart.items.get(product.id);
+    groupedItems.items.pop();
+    groupedItems.subQuantity -= 1;
+    groupedItems.subTotalPrice -= product.price;
+
+    this.cart.totalItems -= 1;
+    this.cart.totalPrice -= product.price;
    }
 
    getCart(): Cart{

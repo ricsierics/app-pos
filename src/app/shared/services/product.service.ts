@@ -55,22 +55,6 @@ export class ProductService {
   }
 
   decrementStock(productId: number, decrementBy: number) {
-    // let product: Product;
-    // this.getById(productId).pipe(
-    //   map(result => {
-    //     product = result;
-    //     console.log("Decrement Stock:");
-    //     console.log(product);
-    //     product.stockQty -= decrementBy;
-    //     return this.edit(product); //.subscribe(() => console.log("Decrement complete"));
-    //   })  
-    // );
-
-    // this.getById(productId).subscribe((result) => {
-    //   result.stockQty -= decrementBy;
-    //   return this.edit(result);
-    // })
-    
     console.log("decrementStock triggered");
     
     return this.getById(productId).pipe(

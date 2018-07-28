@@ -12,7 +12,7 @@ export class AdminProductsComponent implements OnInit {
 
   constructor(private _service: ProductService) { }
 
-  ngOnInit(): void {
+  ngOnInit(){
     this.getProducts();
   }
 
@@ -28,11 +28,11 @@ export class AdminProductsComponent implements OnInit {
       });
   }
 
-  addProduct(newProduct: Product){
+  addProduct(){
     this.getProducts();
   }
 
-  deleteProduct(selectedProduct: Product){
+  onClickDeleteProduct(selectedProduct: Product){
     this._service.delete(selectedProduct.id).subscribe(
       () => { this.products = this.products.filter(c => c !== selectedProduct); },
       (error: any) => {

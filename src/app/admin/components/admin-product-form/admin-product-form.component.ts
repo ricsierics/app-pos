@@ -2,6 +2,8 @@ import { Component, OnInit, EventEmitter, Input, Output } from '@angular/core';
 import { Product } from '../../../shared/models/Product';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
+declare var $: any;
+
 @Component({
   selector: 'admin-product-form',
   templateUrl: './admin-product-form.component.html',
@@ -39,7 +41,8 @@ export class AdminProductFormComponent implements OnInit {
   }
 
   onBtnPrimaryClick(){
-    this.onBtnPrimaryClickEventEmitter.emit(this.form);
+    this.bindFormToModel();
+    this.onBtnPrimaryClickEventEmitter.emit(this.model);
   }
 
   bindModelToForm(){
@@ -51,6 +54,29 @@ export class AdminProductFormComponent implements OnInit {
     this.stockQty.setValue(this.model.stockQty);
     this.uom.setValue(this.model.uom);
     this.expiration.setValue(this.model.expiration);
+  }
+
+  bindFormToModel(){  
+    this.model.id = this.id.value;
+    this.model.code = this.code.value;
+    this.model.name = this.name.value;
+    this.model.description = this.description.value;
+    this.model.price = Number(this.price.value);
+    this.model.stockQty = Number(this.stockQty.value);
+    this.model.uom = this.uom.value;
+    this.model.expiration = this.expiration.value;
+  }
+  
+  resetForm(){
+    this.form.reset();
+  }
+
+  showForm(){
+    $('#' + this.modalId).modal('show');
+  }
+
+  closeForm(){
+    $('.close').click();
   }
 
   get id(){

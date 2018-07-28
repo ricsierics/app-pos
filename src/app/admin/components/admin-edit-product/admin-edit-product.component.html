@@ -1,8 +1,8 @@
-<button (click)="onShowModal()">Edit</button>
+<button (click)="onClickEdit()">Edit</button>
 
 <admin-product-form
  [model]="model"
- (onBtnPrimaryClickEventEmitter)="onEdit($event)"
+ (onBtnPrimaryClickEventEmitter)="onSave($event)"
  [modalId]="modalId"
  [formTitle]="formTitle"
  [btnPrimaryLabel]="btnPrimaryLabel"
