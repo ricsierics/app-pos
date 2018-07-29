@@ -9,11 +9,10 @@ import { GroupedItem } from '../../shared/models/GroupedItem';
 })
 export class CartService {
   cart: Cart;
-  products: Product[];
+  //products: Product[];  //Will comment it might be unused
 
   constructor(private _productService: ProductService) {
     this.cart = new Cart;
-    //this._productService.;
 
     console.log("Cart service initialized:");
     console.log(this.cart);
@@ -37,11 +36,9 @@ export class CartService {
 
      console.log("Add to cart:");
      console.log(this.cart);
-
    }
 
    removeFromCart(product: Product){
-    //let groupedItems = this.cart.items.get(product.id);
     let groupedItems = this.getGroupedItems(product.id);
     groupedItems.items.pop();
     groupedItems.subQuantity -= 1;
@@ -60,6 +57,20 @@ export class CartService {
 
    getCart(): Cart{
      return this.cart;
+   }
+
+   checkOutCart(){
+     let products: Product[] = [];
+     let groupedItems: GroupedItem[] = [];
+     this.cart.items.forEach(element => {
+       groupedItems.push(element);
+       element.items.forEach(product => products.push(product))
+     });
+
+     let product = new Product();
+     //product = groupedItems[0];
+
+     this._productService.edit
    }
 
    private getGroupedItems(productId: number): GroupedItem{
