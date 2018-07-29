@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Product } from 'src/app/shared/models/Product';
 import { ProductsComponent } from '../products/products.component';
+import { GroupedItem } from '../../../shared/models/GroupedItem';
 
 @Component({
   selector: 'home',
@@ -25,5 +26,9 @@ export class HomeComponent implements OnInit {
 
   deductQuantity(product: Product){
     this.productsComponent.onDeselect(product);
+  }
+
+  clearCart(groupedItems: GroupedItem[]){
+    this.productsComponent.onDeselectAll(groupedItems);
   }
 }

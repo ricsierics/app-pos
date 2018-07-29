@@ -2,6 +2,7 @@ import { Component, OnInit, Output } from '@angular/core';
 import { ProductService } from '../../../shared/services/product.service';
 import { Product } from '../../../shared/models/Product';
 import { CartService } from '../../services/cart.service';
+import { GroupedItem } from '../../../shared/models/GroupedItem';
 
 @Component({
   selector: 'products',
@@ -30,9 +31,9 @@ export class ProductsComponent implements OnInit {
       });
   }
 
-  onSelect(product: Product){
+  onSelect(selectedProduct: Product){
     console.log("Product selected:");
-    console.log(product);
+    console.log(selectedProduct);
     
     // this._productService.decrementStock(product.id, 1).subscribe(() => {
     //   console.log("inside decrementStock subscription");
@@ -43,19 +44,27 @@ export class ProductsComponent implements OnInit {
     // });
 
     //update product stock
-    let y = this.products.filter(x => x.id == product.id)[0];
-    if(y.stockQty == 0)
+    let product = this.products.filter(x => x.id == selectedProduct.id)[0];
+    if(product.stockQty == 0)
       return;
-    y.stockQty -= 1;
+    product.stockQty -= 1;
     //add product to cart
-    this._cartService.addToCart(product);
+    this._cartService.addToCart(selectedProduct);
   }
 
-  onDeselect(product: Product){
+  onDeselect(selectedProduct: Product){
     //update product stock
-    let y = this.products.filter(x => x.id == product.id)[0];
-    y.stockQty += 1;
+    let product = this.products.filter(x => x.id == selectedProduct.id)[0];
+    product.stockQty += 1;
     //add product to cart
-    this._cartService.removeFromCart(product);
+    this._cartService.removeFromCart(selectedProduct);
+  }
+
+  onDeselectAll(groupedItems: GroupedItem[]){
+    groupedItems.forEach(groupedItem => {
+      let product = this.products.filter(x => x.id == groupedItem.items[0].id)[0];
+      product.stockQty += groupedItem.subQuantity;
+      this._cartService.removeAllFromCart();
+    });
   }
 }

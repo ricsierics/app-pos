@@ -1,0 +1,19 @@
+.fa-minus-square {
+    cursor: pointer;
+}
+
+.fa-plus-square {
+    cursor: pointer;
+}
+
+.clear-container {
+    padding-right: 0px;
+}
+
+.checkout-container {
+    padding-left: 0px;
+}
+
+.cart-button {
+    width: 100%;
+}

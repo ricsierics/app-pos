@@ -21,4 +21,20 @@
       </ng-container>
     </tr>
   </tbody>
+  <tfoot>
+    <tr>
+      <th colspan="2">TOTAL</th>
+      <th>{{ cart.totalItems }}</th>
+      <th>{{ cart.totalPrice }}</th>
+    </tr>
+  </tfoot>
 </table>
+
+<div class="row">
+  <div class="col-6 clear-container">
+      <button class="btn btn-danger cart-button" (click)="clearCart()">CLEAR CART</button>
+  </div>
+  <div class="col-6 checkout-container">
+      <button class="btn btn-primary cart-button" (click)="checkOut()">CHECK OUT</button>
+  </div>
+</div>

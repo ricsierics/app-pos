@@ -13,6 +13,7 @@ export class ShoppingCartComponent implements OnInit {
   cart: Cart;
   @Output() addQuantityEmitter = new EventEmitter();
   @Output() deductQuantityEmitter = new EventEmitter();
+  @Output() clearCartEmitter = new EventEmitter();
 
   constructor(private _service: CartService) { }
 
@@ -33,5 +34,19 @@ export class ShoppingCartComponent implements OnInit {
   deductQuantity(groupedItem: GroupedItem){
     let product = groupedItem.items[0];
     this.deductQuantityEmitter.emit(product);
+  }
+
+  clearCart(){
+    let groupedItems: GroupedItem[] = [];
+    this.cart.items.forEach(element =>
+      groupedItems.push(element)
+    );
+    this.clearCartEmitter.emit(groupedItems);
+    this._service.removeAllFromCart();
+    this.cart = this._service.getCart();
+  }
+
+  checkOut(){
+
   }
 }

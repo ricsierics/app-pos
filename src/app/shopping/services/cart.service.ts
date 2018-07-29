@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Cart } from '../../shared/models/Cart';
 import { Product } from '../../shared/models/Product';
 import { ProductService } from '../../shared/services/product.service';
+import { GroupedItem } from '../../shared/models/GroupedItem';
 
 @Injectable({
   providedIn: 'root'
@@ -27,7 +28,8 @@ export class CartService {
 
     //If ok, proceed add to cart then decrement stock by qty
 
-    let groupedItems = this.cart.items.get(product.id);
+    //let groupedItems = this.cart.items.get(product.id);
+    let groupedItems = this.getGroupedItems(product.id);
     if(groupedItems) {
       let newSubQty = groupedItems.items.push(product);
       groupedItems.subQuantity = newSubQty;
@@ -46,7 +48,8 @@ export class CartService {
    }
 
    removeFromCart(product: Product){
-    let groupedItems = this.cart.items.get(product.id);
+    //let groupedItems = this.cart.items.get(product.id);
+    let groupedItems = this.getGroupedItems(product.id);
     groupedItems.items.pop();
     groupedItems.subQuantity -= 1;
     groupedItems.subTotalPrice -= product.price;
@@ -55,8 +58,16 @@ export class CartService {
     this.cart.totalPrice -= product.price;
    }
 
+   removeAllFromCart(){
+     this.cart = new Cart();
+   }
+
    getCart(): Cart{
      return this.cart;
+   }
+
+   private getGroupedItems(productId: number): GroupedItem{
+    return this.cart.items.get(productId);
    }
 }
 
