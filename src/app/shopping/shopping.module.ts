@@ -4,10 +4,12 @@ import { ProductsComponent } from './components/products/products.component';
 import { RouterModule } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
 import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   imports: [
     CommonModule,
+    SharedModule,
     RouterModule.forChild([
       { path: 'products', component: ProductsComponent }
     ])

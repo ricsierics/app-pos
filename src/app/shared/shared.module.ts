@@ -6,6 +6,7 @@ import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './services/in-memory-data.service'
 import { ProductService } from './services/product.service';
 import { HttpClientModule } from '../../../node_modules/@angular/common/http';
+import { AlertBoxComponent } from './components/alert-box/alert-box.component';
 
 @NgModule({
   imports: [
@@ -17,13 +18,16 @@ import { HttpClientModule } from '../../../node_modules/@angular/common/http';
       InMemoryDataService, { dataEncapsulation: false }
     )
   ],
-  declarations: [],
+  declarations: [
+    AlertBoxComponent
+  ],
   providers:[
     ProductService
   ],
   exports: [
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AlertBoxComponent
   ]
 })
 export class SharedModule { }

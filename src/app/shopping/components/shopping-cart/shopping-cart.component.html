@@ -31,10 +31,23 @@
 </table>
 
 <div class="row">
+  <alert-box [modal]="modal" (onBtnPrimaryEmitter)="execute($event)"></alert-box>
   <div class="col-6 clear-container">
-      <button class="btn btn-danger cart-button" (click)="clearCart()" [disabled]="cart.items.size == 0">CLEAR CART</button>
+      <button #sender
+        id="btnClear"
+        class="btn btn-danger cart-button" 
+        (click)="showConfirmation(sender)" 
+        [disabled]="!hasCartItems()">
+          CLEAR CART
+      </button>
   </div>
   <div class="col-6 checkout-container">
-      <button class="btn btn-primary cart-button" (click)="checkOut()">CHECK OUT</button>
+      <button #sender
+        id="btnCheckOut"
+        class="btn btn-primary cart-button" 
+        (click)="showConfirmation(sender)" 
+        [disabled]="!hasCartItems()">
+          CHECK OUT
+      </button>
   </div>
 </div>

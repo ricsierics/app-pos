@@ -1,8 +1,9 @@
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output, ViewChild } from '@angular/core';
 import { CartService } from '../../services/cart.service';
 import { Cart } from 'src/app/shared/models/Cart';
 import { GroupedItem } from '../../../shared/models/GroupedItem';
-import { Product } from 'src/app/shared/models/Product';
+import { Modal } from 'src/app/shared/models/Modal';
+import { AlertBoxComponent } from '../../../shared/components/alert-box/alert-box.component';
 
 @Component({
   selector: 'shopping-cart',
@@ -14,8 +15,12 @@ export class ShoppingCartComponent implements OnInit {
   @Output() addQuantityEmitter = new EventEmitter();
   @Output() deductQuantityEmitter = new EventEmitter();
   @Output() clearCartEmitter = new EventEmitter();
+  modal: Modal;
+  @ViewChild(AlertBoxComponent) modalComponent: AlertBoxComponent;
 
-  constructor(private _service: CartService) { }
+  constructor(private _service: CartService) {
+    this.modal = new Modal("shoppingCartModal", "Confirmation", "Are you sure?", "No", "Yes");
+   }
 
   ngOnInit() {
     this.cart = this._service.getCart();
@@ -48,6 +53,22 @@ export class ShoppingCartComponent implements OnInit {
   }
 
   checkOut(){
+    console.log("CHECK OUT mode");
+  }
 
+  showConfirmation(sender :any){
+    this.modalComponent.show(sender);
+  }
+
+  execute(sender: any){
+    if(sender.id == "btnClear")
+      this.clearCart();
+    else if(sender.id == "btnCheckOut")
+      this.checkOut();
+    this.modalComponent.dismiss();
+  }
+
+  hasCartItems(): boolean{
+    return this.cart.items.size > 0;
   }
 }
