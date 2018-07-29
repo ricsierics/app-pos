@@ -25,10 +25,10 @@ export class HomeComponent implements OnInit {
   }
 
   deductQuantity(product: Product){
-    this.productsComponent.onDeselect(product);
+    this.productsComponent.onDeductQuantity(product);
   }
 
   clearCart(groupedItems: GroupedItem[]){
-    this.productsComponent.onDeselectAll(groupedItems);
+    this.productsComponent.onClearCart(groupedItems);
   }
 }

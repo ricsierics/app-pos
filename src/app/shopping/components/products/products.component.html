@@ -2,6 +2,7 @@
   <ng-container *ngFor="let product of products"> 
       <ng-container *ngIf="product.stockQty > 0">
           <div class="dynacell" (click)="onSelect(product)">
+              <!-- <p>ID: {{ product.id }}</p> -->
               <p>Name: {{ product.name }}</p>
               <p>Price: {{ product.price}}</p>
               <p>Stock: {{ product.stockQty}}</p>

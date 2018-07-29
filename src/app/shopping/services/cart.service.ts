@@ -22,13 +22,7 @@ export class CartService {
    addToCart(product: Product, qty?: number){
      if(!qty)
       qty = 1;
-    //Check if stock is enough vs qty
-    //this._productService.decrementStock(product.id, qty).subscribe();
 
-
-    //If ok, proceed add to cart then decrement stock by qty
-
-    //let groupedItems = this.cart.items.get(product.id);
     let groupedItems = this.getGroupedItems(product.id);
     if(groupedItems) {
       let newSubQty = groupedItems.items.push(product);
@@ -44,7 +38,6 @@ export class CartService {
      console.log("Add to cart:");
      console.log(this.cart);
 
-     //this._productService.decrementStock(product.id, 1)
    }
 
    removeFromCart(product: Product){
@@ -53,6 +46,9 @@ export class CartService {
     groupedItems.items.pop();
     groupedItems.subQuantity -= 1;
     groupedItems.subTotalPrice -= product.price;
+
+    if (groupedItems.subQuantity == 0)
+      this.cart.items.delete(product.id);
 
     this.cart.totalItems -= 1;
     this.cart.totalPrice -= product.price;

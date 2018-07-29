@@ -34,6 +34,7 @@ export class ShoppingCartComponent implements OnInit {
   deductQuantity(groupedItem: GroupedItem){
     let product = groupedItem.items[0];
     this.deductQuantityEmitter.emit(product);
+    this._service.removeFromCart(product);
   }
 
   clearCart(){
