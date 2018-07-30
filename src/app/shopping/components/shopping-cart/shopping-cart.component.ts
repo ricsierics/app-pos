@@ -20,7 +20,7 @@ export class ShoppingCartComponent implements OnInit {
 
   constructor(private _service: CartService) {
     this.modal = new Modal("shoppingCartModal", "Confirmation", "Are you sure?", "No", "Yes");
-   }
+  }
 
   ngOnInit() {
     this.cart = this._service.getCart();
@@ -42,18 +42,25 @@ export class ShoppingCartComponent implements OnInit {
     this._service.removeFromCart(product);
   }
 
-  clearCart(){
+  clearCart(isCheckOutMode?: boolean){
     let groupedItems: GroupedItem[] = [];
     this.cart.items.forEach(element =>
       groupedItems.push(element)
     );
-    this.clearCartEmitter.emit(groupedItems);
+    if(!isCheckOutMode)
+      this.clearCartEmitter.emit(groupedItems);
     this._service.removeAllFromCart();
     this.cart = this._service.getCart();
   }
 
   checkOut(){
-    console.log("CHECK OUT mode");
+    console.log("CHECK OUT initialized...");
+    this._service.checkOutCart().subscribe(
+      result => {
+        console.log("CHECK OUT done!");
+        console.log(this.cart);
+        this.clearCart(true);
+    });
   }
 
   showConfirmation(sender :any){

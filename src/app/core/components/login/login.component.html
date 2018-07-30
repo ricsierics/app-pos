@@ -1,7 +1,7 @@
 <h3>Log In</h3>
 <form #form="ngForm" (ngSubmit)="submit(form)">
-  <div class="alert alert-danger" *ngIf="form.touched && !form.valid">
-    Test
+  <div class="alert alert-danger" *ngIf="form.touched && form.errors?.invalidlogin">
+    Username and Password do not match.
   </div>
   <div class="form-group">
     <label for="username">Username</label>

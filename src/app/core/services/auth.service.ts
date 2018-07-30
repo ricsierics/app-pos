@@ -16,33 +16,33 @@ export class AuthService {
     localStorage.setItem("returnUrl", returnUrl);
 
     if(username == "admin" && password == "password"){
-      sessionStorage.setItem("sessionId", "session-admin");
+      localStorage.setItem("sessionId", "session-admin");
       this.user.username = username;
       this.user.isAdmin = true;
       return of(this.user);
     } else if(username == "user" && password == "password"){
-      sessionStorage.setItem("sessionId", "session-user");
+      localStorage.setItem("sessionId", "session-user");
       this.user.username = username;
       this.user.isAdmin = false;
       return of(this.user);
     }
-    return of();
+    return of(null);
   }
 
   getCurrentUser(): Observable<User>{
-    let sessionId = sessionStorage.getItem("sessionId");
+    let sessionId = localStorage.getItem("sessionId");
     if(sessionId) return of(this.user);
     return of(null);
   }
 
   isAuthenticated(): Observable<boolean>{
-    let sessionId = sessionStorage.getItem("sessionId");
+    let sessionId = localStorage.getItem("sessionId");
     if(sessionId) return of(true);
     return of(false);
   }
 
   logout(){
-    sessionStorage.removeItem("sessionId");
+    localStorage.removeItem("sessionId");
     return of(true);
   }
 }
