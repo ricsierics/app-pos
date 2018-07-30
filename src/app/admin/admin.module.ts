@@ -8,13 +8,14 @@ import { AdminAddProductComponent } from './components/admin-add-product/admin-a
 import { SharedModule } from '../shared/shared.module';
 import { AdminEditProductComponent } from './components/admin-edit-product/admin-edit-product.component';
 import { AuthGuard } from '../core/services/auth-guard.service';
+import { AdminAuthGuard } from './services/admin-auth-guard.service';
 
 @NgModule({
   imports: [
     CommonModule,
     SharedModule,
     RouterModule.forChild([
-      { path: 'admin/products' , component: AdminProductsComponent, canActivate: [AuthGuard] }
+      { path: 'admin/products' , component: AdminProductsComponent, canActivate: [AuthGuard, AdminAuthGuard] }
     ])
   ],
   declarations: [
@@ -23,6 +24,9 @@ import { AuthGuard } from '../core/services/auth-guard.service';
     AdminProductFormComponent,
     AdminAddProductComponent,
     AdminEditProductComponent
+  ],
+  providers:[
+    AdminAuthGuard
   ]
 })
 export class AdminModule { }

@@ -1,24 +1,38 @@
 import { Injectable } from '@angular/core';
-import { of, Observable } from 'rxjs';
+import { of, Observable, empty } from 'rxjs';
 import { ActivatedRoute } from '../../../../node_modules/@angular/router';
+import { User } from '../../shared/models/User';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+  user = new User();
 
   constructor(private route: ActivatedRoute) { }
 
-  login(username: string, password: string): Observable<boolean>{
+  login(username: string, password: string): Observable<User>{
     let returnUrl = this.route.snapshot.queryParamMap.get("returnUrl") || "/";
     localStorage.setItem("returnUrl", returnUrl);
 
-    if((username == "admin" && password == "password") ||
-       (username == "user" && password == "password")){
-      sessionStorage.setItem("sessionId", "session1");
-      return of(true);
+    if(username == "admin" && password == "password"){
+      sessionStorage.setItem("sessionId", "sessionAdmin");
+      this.user.username = username;
+      this.user.isAdmin = true;
+      return of(this.user);
+    } else if(username == "user" && password == "password"){
+      sessionStorage.setItem("sessionId", "sessionUser");
+      this.user.username = username;
+      this.user.isAdmin = false;
+      return of(this.user);
     }
-    return of(false);
+    return of();
+  }
+
+  getCurrentUser(): Observable<User>{
+    let sessionId = sessionStorage.getItem("sessionId");
+    if(sessionId) return of(this.user);
+    return of(null);
   }
 
   isAuthenticated(): Observable<boolean>{
@@ -28,7 +42,7 @@ export class AuthService {
   }
 
   logout(){
-    sessionStorage.removeItem("sessionId")
+    sessionStorage.removeItem("sessionId");
     return of(true);
   }
 }
