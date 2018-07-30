@@ -4,6 +4,7 @@ import { Cart } from 'src/app/shared/models/Cart';
 import { GroupedItem } from '../../../shared/models/GroupedItem';
 import { Modal } from 'src/app/shared/models/Modal';
 import { AlertBoxComponent } from '../../../shared/components/alert-box/alert-box.component';
+import { OrderSummaryComponent } from '../order-summary/order-summary.component';
 
 @Component({
   selector: 'shopping-cart',
@@ -17,6 +18,7 @@ export class ShoppingCartComponent implements OnInit {
   @Output() clearCartEmitter = new EventEmitter();
   modal: Modal;
   @ViewChild(AlertBoxComponent) modalComponent: AlertBoxComponent;
+  @ViewChild(OrderSummaryComponent) orderSummaryComponent: OrderSummaryComponent;
 
   constructor(private _service: CartService) {
     this.modal = new Modal("shoppingCartModal", "Confirmation", "Are you sure?", "No", "Yes");
@@ -60,11 +62,16 @@ export class ShoppingCartComponent implements OnInit {
         console.log("CHECK OUT done!");
         console.log(this.cart);
         this.clearCart(true);
+        this.orderSummaryComponent.dismiss();
     });
   }
 
   showConfirmation(sender :any){
     this.modalComponent.show(sender);
+  }
+
+  showOrderSummary(){
+    this.orderSummaryComponent.show();
   }
 
   execute(sender: any){

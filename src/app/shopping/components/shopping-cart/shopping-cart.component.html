@@ -32,6 +32,7 @@
 
 <div class="row">
   <alert-box [modal]="modal" (onBtnPrimaryEmitter)="execute($event)"></alert-box>
+  <order-summary (onSubmitEmitter)="checkOut()" ></order-summary>
   <div class="col-6 clear-container">
       <button #btnClear
         id="btnClear"
@@ -45,7 +46,7 @@
       <button #btnCheckOut
         id="btnCheckOut"
         class="btn btn-primary cart-button" 
-        (click)="showConfirmation(btnCheckOut)" 
+        (click)="showOrderSummary()" 
         [disabled]="!hasCartItems()">
           CHECK OUT
       </button>

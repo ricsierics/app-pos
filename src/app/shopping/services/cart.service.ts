@@ -27,7 +27,7 @@ export class CartService {
     if(!qty)
       qty = 1;
 
-    let groupedItems = this.getGroupedItems(product.id);
+    let groupedItems = this.getGroupedItemById(product.id);
     if(groupedItems) {
       let newSubQty = groupedItems.items.push(product);
       groupedItems.subQuantity = newSubQty;
@@ -44,7 +44,7 @@ export class CartService {
   }
 
   removeFromCart(product: Product){
-    let groupedItems = this.getGroupedItems(product.id);
+    let groupedItems = this.getGroupedItemById(product.id);
     groupedItems.items.pop();
     groupedItems.subQuantity -= 1;
     groupedItems.subTotalPrice -= product.price;
@@ -68,10 +68,7 @@ export class CartService {
     //update product stocks based on cart items
     //add orders based on cart items
 
-    let groupedItems: GroupedItem[] = [];
-    this.cart.items.forEach(element => {
-      groupedItems.push(element);
-    });
+    let groupedItems = this.getGroupedItems();
 
     let observables: Observable<Product>[] = [];
     groupedItems.forEach(groupedItem => {
@@ -83,7 +80,15 @@ export class CartService {
     );
   }
 
-  private getGroupedItems(productId: number): GroupedItem{
+  getGroupedItems(): GroupedItem[]{
+    let groupedItems: GroupedItem[] = [];
+    this.cart.items.forEach(element => {
+      groupedItems.push(element);
+    });
+    return groupedItems;
+  }
+
+  private getGroupedItemById(productId: number): GroupedItem{
     return this.cart.items.get(productId);
   }
 }
