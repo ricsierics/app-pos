@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
+import { tap } from '../../../../../node_modules/rxjs/operators';
 
 @Component({
   selector: 'bs-navbar',
@@ -7,13 +10,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BsNavbarComponent implements OnInit {
 
-  constructor() { }
+  constructor(private _auth: AuthService, private router: Router) { }
 
   ngOnInit() {
   }
 
   logout(){
-    console.log("LOG OUT");
+    this._auth.logout().subscribe(result => {
+      this.router.navigate(['/login']);
+    });
   }
-
 }

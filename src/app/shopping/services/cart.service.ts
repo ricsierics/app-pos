@@ -3,6 +3,10 @@ import { Cart } from '../../shared/models/Cart';
 import { Product } from '../../shared/models/Product';
 import { ProductService } from '../../shared/services/product.service';
 import { GroupedItem } from '../../shared/models/GroupedItem';
+import { Observable, timer, of, observable, from, concat } from '../../../../node_modules/rxjs';
+//import { concat } from 'rxjs/operators';
+//import { of } from 'rxjs/observable/of';
+import {take, concatAll, skip} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -60,17 +64,30 @@ export class CartService {
    }
 
    checkOutCart(){
-     let products: Product[] = [];
      let groupedItems: GroupedItem[] = [];
      this.cart.items.forEach(element => {
        groupedItems.push(element);
-       element.items.forEach(product => products.push(product))
      });
 
-     let product = new Product();
-     //product = groupedItems[0];
+     let observables: Observable<Product>[];
+     groupedItems.forEach(groupedItem => {
+      observables.push(this._productService.decrementStock(groupedItem.items[0].id, groupedItem.subQuantity));
+     });
 
-     this._productService.edit
+
+    // concatAll();
+
+    // observables.forEach(element => 
+    //   element.pipe(concat(of(1,2,3)))
+    // );
+
+
+
+     const source1 = of(1,2,3);
+     const source2 = of(4,5,6);
+     //const example = source1.pipe(concat(source2));
+     const example = concat(source1, source2, source1);
+     const subscribe = example.subscribe(val => console.log('Example: ', val));
    }
 
    private getGroupedItems(productId: number): GroupedItem{

@@ -9,6 +9,7 @@ import { CoreModule } from './core/core.module';
 import { ProductsComponent } from './shopping/components/products/products.component';
 import { ShoppingModule } from './shopping/shopping.module';
 import { HomeComponent } from './shopping/components/home/home.component';
+import { AuthGuard } from './core/services/auth-guard.service';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,7 @@ import { HomeComponent } from './shopping/components/home/home.component';
     AdminModule,
     ShoppingModule,
     RouterModule.forRoot([
-      { path: '', component: HomeComponent }
+      { path: '', component: HomeComponent, canActivate: [AuthGuard] }
     ])
   ],
   providers: [],
