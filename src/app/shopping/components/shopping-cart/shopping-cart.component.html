@@ -33,19 +33,19 @@
 <div class="row">
   <alert-box [modal]="modal" (onBtnPrimaryEmitter)="execute($event)"></alert-box>
   <div class="col-6 clear-container">
-      <button #sender
+      <button #btnClear
         id="btnClear"
         class="btn btn-danger cart-button" 
-        (click)="showConfirmation(sender)" 
+        (click)="showConfirmation(btnClear)" 
         [disabled]="!hasCartItems()">
           CLEAR CART
       </button>
   </div>
   <div class="col-6 checkout-container">
-      <button #sender
+      <button #btnCheckOut
         id="btnCheckOut"
         class="btn btn-primary cart-button" 
-        (click)="showConfirmation(sender)" 
+        (click)="showConfirmation(btnCheckOut)" 
         [disabled]="!hasCartItems()">
           CHECK OUT
       </button>

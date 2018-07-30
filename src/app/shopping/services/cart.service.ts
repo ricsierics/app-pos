@@ -7,6 +7,7 @@ import { Observable, timer, of, observable, from, concat } from '../../../../nod
 //import { concat } from 'rxjs/operators';
 //import { of } from 'rxjs/observable/of';
 import {take, concatAll, skip} from 'rxjs/operators';
+import { AuthService } from '../../core/services/auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -15,8 +16,11 @@ export class CartService {
   cart: Cart;
   //products: Product[];  //Will comment it might be unused
 
-  constructor(private _productService: ProductService) {
+  constructor(private _productService: ProductService, private _authService: AuthService) {
     this.cart = new Cart;
+    this._authService.getCurrentUser().subscribe(
+      user => this.cart.user = user
+    );
 
     console.log("Cart service initialized:");
     console.log(this.cart);

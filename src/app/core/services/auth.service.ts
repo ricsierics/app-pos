@@ -16,12 +16,12 @@ export class AuthService {
     localStorage.setItem("returnUrl", returnUrl);
 
     if(username == "admin" && password == "password"){
-      sessionStorage.setItem("sessionId", "sessionAdmin");
+      sessionStorage.setItem("sessionId", "session-admin");
       this.user.username = username;
       this.user.isAdmin = true;
       return of(this.user);
     } else if(username == "user" && password == "password"){
-      sessionStorage.setItem("sessionId", "sessionUser");
+      sessionStorage.setItem("sessionId", "session-user");
       this.user.username = username;
       this.user.isAdmin = false;
       return of(this.user);
