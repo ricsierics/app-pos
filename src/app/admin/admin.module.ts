@@ -7,13 +7,14 @@ import { RouterModule } from '@angular/router';
 import { AdminAddProductComponent } from './components/admin-add-product/admin-add-product.component';
 import { SharedModule } from '../shared/shared.module';
 import { AdminEditProductComponent } from './components/admin-edit-product/admin-edit-product.component';
+import { AuthGuard } from '../core/services/auth-guard.service';
 
 @NgModule({
   imports: [
     CommonModule,
     SharedModule,
     RouterModule.forChild([
-      { path: 'admin/products' , component: AdminProductsComponent }
+      { path: 'admin/products' , component: AdminProductsComponent, canActivate: [AuthGuard] }
     ])
   ],
   declarations: [

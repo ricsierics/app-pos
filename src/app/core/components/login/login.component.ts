@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 
@@ -7,20 +7,19 @@ import { AuthService } from '../../services/auth.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
 
   constructor(private _auth: AuthService, private router: Router) { }
 
-  ngOnInit() {
-  }
-
   submit(form){
     let username: string = form.value.username;
-    let password: string = form.value.password
+    let password: string = form.value.password;
+    let returnUrl: string;
     this._auth.login(username, password).subscribe(isAuthenticated => {
       console.log(isAuthenticated);
       if(isAuthenticated)
-        this.router.navigate(['/home']);
+        returnUrl = localStorage.getItem("returnUrl");
+        this.router.navigate([returnUrl]);
     });
   }
 
