@@ -38,15 +38,13 @@ export class OrderSummaryComponent implements OnInit {
     this.order.totalAmount = this.cart.totalPrice;
     this.order.paymentMethod = "Cash on delivery";
     this.order.user = this.cart.user;
-    //this.order.paidAmount = 0;
-    //this.order.changeAmount = 0;//this.order.totalAmount - this.order.paidAmount;
   }
 
   computeChange(){
     this.order.changeAmount =  this.order.paidAmount - this.order.totalAmount;
   }
 
-  isChangeValid(){
+  isChangeValid(): boolean{
     return this.order.changeAmount >= 0;
   }
 

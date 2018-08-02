@@ -10,7 +10,8 @@ import { CartService } from '../../services/cart.service';
   styleUrls: ['./products.component.css']
 })
 export class ProductsComponent implements OnInit {
-  products: Product[] = [];
+  private products: Product[] = [];
+  filteredProducts: Product[] = [];
   
   constructor(private _service: ProductService, private _cartService: CartService) { }
 
@@ -21,7 +22,10 @@ export class ProductsComponent implements OnInit {
   //Warning: duplicate code in admin-products.component.ts
   getProducts(){
     this._service.getAll().subscribe(
-      (values) => { this.products = values; console.log("Breakpoint:"); console.log(values) },
+      (values) => { 
+        this.products = values;
+        this.filteredProducts = this.products;
+      },
       (error: any) => {
         if(error.error instanceof Error){
           console.log('Client-side error occured');
@@ -32,7 +36,7 @@ export class ProductsComponent implements OnInit {
   }
 
   onSelect(selectedProduct: Product){
-    let product = this.products.filter(x => x.id == selectedProduct.id)[0];
+    let product = this.filteredProducts.filter(x => x.id == selectedProduct.id)[0];
     if(product.stockQty == 0)
       return;
     product.stockQty -= 1;
@@ -40,14 +44,22 @@ export class ProductsComponent implements OnInit {
   }
 
   onDeductQuantity(selectedProduct: Product){
-    let product = this.products.filter(x => x.id == selectedProduct.id)[0];
+    let product = this.filteredProducts.filter(x => x.id == selectedProduct.id)[0];
     product.stockQty += 1;
   }
 
   onClearCart(groupedItems: GroupedItem[]){
     groupedItems.forEach(groupedItem => {
-      let product = this.products.filter(x => x.id == groupedItem.items[0].id)[0];
+      let product = this.filteredProducts.filter(x => x.id == groupedItem.items[0].id)[0];
       product.stockQty += groupedItem.subQuantity;
     });
+  }
+
+  onSearch(keyword: string){
+    if(keyword.trim()){
+      console.log(`Keyword: ${keyword}`);
+      this.filteredProducts = this.products.filter(x => x.name.includes(keyword.trim()));
+    } else
+      this.filteredProducts = this.products;
   }
 }
