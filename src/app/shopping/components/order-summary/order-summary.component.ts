@@ -33,18 +33,21 @@ export class OrderSummaryComponent implements OnInit {
 
   bindCartToOrder(){
     this.cart = this.cartService.getCart();
-    this.order = new Order();
     this.order.items = this.cartService.getGroupedItems();
     this.order.totalCount = this.cart.totalItems;
     this.order.totalAmount = this.cart.totalPrice;
     this.order.paymentMethod = "Cash on delivery";
     this.order.user = this.cart.user;
-    this.order.paidAmount = 0;
-    this.order.changeAmount = this.order.totalAmount - this.order.paidAmount;
+    //this.order.paidAmount = 0;
+    //this.order.changeAmount = 0;//this.order.totalAmount - this.order.paidAmount;
   }
 
   computeChange(){
     this.order.changeAmount =  this.order.paidAmount - this.order.totalAmount;
+  }
+
+  isChangeValid(){
+    return this.order.changeAmount >= 0;
   }
 
   submit(){

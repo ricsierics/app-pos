@@ -1,0 +1,10 @@
+.valid-change {
+    color: green;
+    font-weight: bold;
+    
+}
+
+.invalid-change {
+    color: red;
+    font-weight: bold;
+}

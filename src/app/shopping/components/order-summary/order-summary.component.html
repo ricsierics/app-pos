@@ -9,18 +9,18 @@
       </div>
       <div class="modal-body">
         <p>Total Count: <strong>{{ order.totalCount }} item(s)</strong></p>
-        <p>Total Amount: <strong>{{ order.totalAmount | currency:'PHP ':"symbol" }}</strong></p>
+        <p>Total Amount: <strong>{{ order.totalAmount | currency:'₱ ':"symbol" }}</strong></p>
         <p>Payment method: <strong>{{ order.paymentMethod }}</strong></p>
 
         <div class="form-group">
           <label>Amount Paid:</label>
           <input [(ngModel)]="order.paidAmount" class="form-control" type="number" (keyup)="computeChange()" />
         </div>
-        <p>Change: <strong>{{ order.changeAmount | currency:'PHP ':"symbol" }}</strong></p>
+        <p>Change: <span [class.valid-change]="isChangeValid()" [class.invalid-change]="!isChangeValid()">{{ order.changeAmount | currency:'₱ ':"symbol" }}</span></p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-        <button type="button" class="btn btn-primary" (click)="submit()">Submit</button>
+        <button type="button" class="btn btn-primary" (click)="submit()" [disabled]="!isChangeValid()">Submit</button>
       </div>
     </div>
   </div>
