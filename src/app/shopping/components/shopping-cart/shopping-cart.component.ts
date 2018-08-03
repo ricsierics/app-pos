@@ -5,6 +5,8 @@ import { GroupedItem } from '../../../shared/models/GroupedItem';
 import { Modal } from 'src/app/shared/models/Modal';
 import { AlertBoxComponent } from '../../../shared/components/alert-box/alert-box.component';
 import { OrderSummaryComponent } from '../order-summary/order-summary.component';
+import { Order } from 'src/app/shared/models/Order';
+import { OrderService } from '../../../shared/services/order.service';
 
 @Component({
   selector: 'shopping-cart',
@@ -20,12 +22,12 @@ export class ShoppingCartComponent implements OnInit {
   @ViewChild(AlertBoxComponent) modalComponent: AlertBoxComponent;
   @ViewChild(OrderSummaryComponent) orderSummaryComponent: OrderSummaryComponent;
 
-  constructor(private _service: CartService) {
+  constructor(private cartService: CartService, private orderService: OrderService) {
     this.modal = new Modal("shoppingCartModal", "Confirmation", "Are you sure?", "No", "Yes");
   }
 
   ngOnInit() {
-    this.cart = this._service.getCart();
+    this.cart = this.cartService.getCart();
   }
 
   getGroupedItems(): GroupedItem[] {
@@ -41,7 +43,7 @@ export class ShoppingCartComponent implements OnInit {
   deductQuantity(groupedItem: GroupedItem){
     let product = groupedItem.items[0];
     this.deductQuantityEmitter.emit(product);
-    this._service.removeFromCart(product);
+    this.cartService.removeFromCart(product);
   }
 
   clearCart(isCheckOutMode?: boolean){
@@ -51,18 +53,21 @@ export class ShoppingCartComponent implements OnInit {
     );
     if(!isCheckOutMode)
       this.clearCartEmitter.emit(groupedItems);
-    this._service.removeAllFromCart();
-    this.cart = this._service.getCart();
+    this.cartService.removeAllFromCart();
+    this.cart = this.cartService.getCart();
   }
 
-  checkOut(){
+  checkOut(order: Order){
     console.log("CHECK OUT initialized...");
-    this._service.checkOutCart().subscribe(
+    this.cartService.checkOutCart().subscribe(
       result => {
         console.log("CHECK OUT done!");
         console.log(this.cart);
-        this.clearCart(true);
-        this.orderSummaryComponent.dismiss();
+
+        this.orderService.addOrder(order).subscribe(() => {
+          this.clearCart(true);
+          this.orderSummaryComponent.dismiss();
+        });
     });
   }
 
@@ -77,9 +82,9 @@ export class ShoppingCartComponent implements OnInit {
   execute(sender: any){
     if(sender.id == "btnClear")
       this.clearCart();
-    else if(sender.id == "btnCheckOut")
-      this.checkOut();
-    this.modalComponent.dismiss();
+    // else if(sender.id == "btnCheckOut")
+    //   this.checkOut();
+    // this.modalComponent.dismiss();
   }
 
   hasCartItems(): boolean{

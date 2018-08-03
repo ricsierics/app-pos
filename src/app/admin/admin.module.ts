@@ -15,7 +15,8 @@ import { AdminAuthGuard } from './services/admin-auth-guard.service';
     CommonModule,
     SharedModule,
     RouterModule.forChild([
-      { path: 'admin/products' , component: AdminProductsComponent, canActivate: [AuthGuard, AdminAuthGuard] }
+      { path: 'admin/products' , component: AdminProductsComponent, canActivate: [AuthGuard, AdminAuthGuard] },
+      { path: 'admin/orders' , component: AdminOrdersComponent, canActivate: [AuthGuard, AdminAuthGuard] }
     ])
   ],
   declarations: [

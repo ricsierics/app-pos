@@ -7,20 +7,23 @@ import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.
 import { SharedModule } from '../shared/shared.module';
 import { AuthGuard } from '../core/services/auth-guard.service';
 import { OrderSummaryComponent } from './components/order-summary/order-summary.component';
+import { MyOrdersComponent } from './components/my-orders/my-orders.component';
 
 @NgModule({
   imports: [
     CommonModule,
     SharedModule,
     RouterModule.forChild([
-      { path: 'home', component: HomeComponent, canActivate: [AuthGuard] }
+      { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
+      { path: 'my/orders', component: MyOrdersComponent, canActivate: [AuthGuard] }
     ])
   ],
   declarations: [
     ProductsComponent,
     HomeComponent,
     ShoppingCartComponent,
-    OrderSummaryComponent
+    OrderSummaryComponent,
+    MyOrdersComponent
   ]
 })
 export class ShoppingModule { }

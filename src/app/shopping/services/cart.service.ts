@@ -68,6 +68,8 @@ export class CartService {
     //update product stocks based on cart items
     //add orders based on cart items
 
+    //Warning: Need to perform transaction scope
+
     let groupedItems = this.getGroupedItems();
 
     let observables: Observable<Product>[] = [];

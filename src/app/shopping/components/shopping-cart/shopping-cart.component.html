@@ -32,7 +32,7 @@
 
 <div class="row">
   <alert-box [modal]="modal" (onBtnPrimaryEmitter)="execute($event)"></alert-box>
-  <order-summary (onSubmitEmitter)="checkOut()" ></order-summary>
+  <order-summary (onSubmitEmitter)="checkOut($event)" ></order-summary>
   <div class="col-6 clear-container">
       <button #btnClear
         id="btnClear"

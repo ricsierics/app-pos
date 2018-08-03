@@ -2,6 +2,8 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Order } from '../../../shared/models/Order';
 import { Cart } from 'src/app/shared/models/Cart';
 import { CartService } from '../../services/cart.service';
+import { OrderService } from '../../../shared/services/order.service';
+import {  } from 'util/'
 
 declare var $: any;
 
@@ -38,6 +40,8 @@ export class OrderSummaryComponent implements OnInit {
     this.order.totalAmount = this.cart.totalPrice;
     this.order.paymentMethod = "Cash on delivery";
     this.order.user = this.cart.user;
+    let dateString = new Date().toJSON().slice(0,10).replace(/-/g,'/');
+    this.order.orderDate = new Date(dateString);
   }
 
   computeChange(){
@@ -50,5 +54,7 @@ export class OrderSummaryComponent implements OnInit {
 
   submit(){
     this.onSubmitEmitter.emit(this.order);
+    console.log("Order:");
+    console.log(this.order);
   }
 }

@@ -1,3 +1,25 @@
-<p>
-  admin-orders works!
-</p>
+<table class="table">
+    <thead>
+      <tr>
+          <th>Total Quantity</th>
+          <th>Total Price</th>
+          <th>Payment Method</th>
+          <th>Paid Amount</th>
+          <th>Change Amount</th>
+          <th>Order Date</th>
+          <th>User</th>
+      </tr>
+      </thead>
+  
+    <tbody>
+      <tr *ngFor="let order of orders">
+          <td>{{ order.totalCount}}</td>
+          <td>{{ order.totalAmount}}</td>
+          <td>{{ order.paymentMethod}}</td>
+          <td>{{ order.paidAmount}}</td>
+          <td>{{ order.changeAmount}}</td>
+          <td>{{ order.orderDate | date: 'MM/dd/yyyy'}}</td>
+          <td>{{ order.user.username}}</td>
+      </tr>
+    </tbody>
+</table>
