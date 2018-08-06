@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from 'src/app/shared/models/Product';
 import { ProductService } from '../../../shared/services/product.service';
+import { NgxSpinnerService } from '../../../../../node_modules/ngx-spinner';
 
 @Component({
   selector: 'app-admin-products',
@@ -9,8 +10,9 @@ import { ProductService } from '../../../shared/services/product.service';
 })
 export class AdminProductsComponent implements OnInit {
   products: Product[] = [];
+  isLoaded = false;
 
-  constructor(private _service: ProductService) { }
+  constructor(private _service: ProductService, private spinner: NgxSpinnerService) { }
 
   ngOnInit(){
     this.getProducts();
@@ -18,7 +20,10 @@ export class AdminProductsComponent implements OnInit {
 
   getProducts(){
     this._service.getAll().subscribe(
-      (values) => { this.products = values },
+      (values) => { 
+        this.products = values;
+        this.isLoaded = true;
+      },
       (error: any) => {
         if(error.error instanceof Error){
           console.log('Client-side error occured');
@@ -33,9 +38,14 @@ export class AdminProductsComponent implements OnInit {
   }
 
   onClickDeleteProduct(selectedProduct: Product){
+    this.spinner.show();
     this._service.delete(selectedProduct.id).subscribe(
-      () => { this.products = this.products.filter(c => c !== selectedProduct); },
+      () => { 
+        this.products = this.products.filter(c => c !== selectedProduct);
+        this.spinner.hide();
+      },
       (error: any) => {
+        this.spinner.hide();
         if(error.error instanceof Error){
           console.log('Client-side error occured');
         } else {

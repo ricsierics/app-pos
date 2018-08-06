@@ -9,11 +9,19 @@ import { Order } from 'src/app/shared/models/Order';
 })
 export class AdminOrdersComponent implements OnInit {
   orders: Order[];
+  isLoaded = false;
 
   constructor(private orderService: OrderService) { }
 
   ngOnInit() {
-    this.orderService.getOrders().subscribe(result => this.orders = result);
+    this.getOrders();
+  }
+
+  private getOrders(){
+    this.orderService.getOrders().subscribe(result => {
+      this.orders = result;
+      this.isLoaded = true;
+    });
   }
 
 }

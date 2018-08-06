@@ -54,7 +54,7 @@ export class AuthService {
 
   logout(): Observable<boolean>{
     localStorage.removeItem(sessionIdKey);
-    return of(true);
+    return of(true).pipe(delay(1200));
   }
 
   private getUserByCredentials(username: string, password: string){

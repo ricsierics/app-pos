@@ -1,14 +1,17 @@
-<div class="form-group">
-    <input #search class="form-control" (keyup)="onSearch(search.value)" placeholder="Search" type="text"/>
-</div>
-<div class="dynagrid">
-  <ng-container *ngFor="let product of filteredProducts"> 
-      <ng-container *ngIf="product.stockQty > 0">
-        <div class="dynacell" (click)="onSelect(product)">
-            <p>Name: {{ product.name }}</p>
-            <p>Price: {{ product.price}}</p>
-            <p>Stock: {{ product.stockQty}}</p>
-        </div>  
+<div>
+    <div class="form-group">
+        <input #search class="form-control" (keyup)="onSearch(search.value)" placeholder="Search" type="text"/>
+    </div>
+    <css-loader [hidden]="isLoaded"></css-loader>
+    <div class="dynagrid">
+      <ng-container *ngFor="let product of filteredProducts"> 
+          <ng-container *ngIf="product.stockQty > 0">
+            <div class="dynacell" (click)="onSelect(product)">
+                <p>Name: {{ product.name }}</p>
+                <p>Price: {{ product.price}}</p>
+                <p>Stock: {{ product.stockQty}}</p>
+            </div>  
+            </ng-container>
         </ng-container>
-    </ng-container>
+    </div>
 </div>

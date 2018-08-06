@@ -7,6 +7,8 @@ import { InMemoryDataService } from './services/in-memory-data.service'
 import { ProductService } from './services/product.service';
 import { HttpClientModule } from '../../../node_modules/@angular/common/http';
 import { AlertBoxComponent } from './components/alert-box/alert-box.component';
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { CssLoaderComponent } from './components/css-loader/css-loader.component'
 
 @NgModule({
   imports: [
@@ -14,12 +16,14 @@ import { AlertBoxComponent } from './components/alert-box/alert-box.component';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    NgxSpinnerModule,
     HttpClientInMemoryWebApiModule.forRoot(
       InMemoryDataService, { dataEncapsulation: false }
     )
   ],
   declarations: [
-    AlertBoxComponent
+    AlertBoxComponent,
+    CssLoaderComponent
   ],
   providers:[
     ProductService
@@ -27,7 +31,9 @@ import { AlertBoxComponent } from './components/alert-box/alert-box.component';
   exports: [
     FormsModule,
     ReactiveFormsModule,
-    AlertBoxComponent
+    AlertBoxComponent,
+    NgxSpinnerModule,
+    CssLoaderComponent
   ]
 })
 export class SharedModule { }

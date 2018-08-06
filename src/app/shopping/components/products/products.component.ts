@@ -12,6 +12,7 @@ import { CartService } from '../../services/cart.service';
 export class ProductsComponent implements OnInit {
   private products: Product[] = [];
   filteredProducts: Product[] = [];
+  isLoaded = false;
   
   constructor(private _service: ProductService, private _cartService: CartService) { }
 
@@ -25,8 +26,10 @@ export class ProductsComponent implements OnInit {
       (values) => { 
         this.products = values;
         this.filteredProducts = this.products;
+        this.isLoaded = true;
       },
       (error: any) => {
+        this.isLoaded = true;
         if(error.error instanceof Error){
           console.log('Client-side error occured');
         } else {

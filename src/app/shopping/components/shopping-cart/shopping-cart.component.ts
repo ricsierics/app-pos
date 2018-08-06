@@ -7,6 +7,7 @@ import { AlertBoxComponent } from '../../../shared/components/alert-box/alert-bo
 import { OrderSummaryComponent } from '../order-summary/order-summary.component';
 import { Order } from 'src/app/shared/models/Order';
 import { OrderService } from '../../../shared/services/order.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'shopping-cart',
@@ -22,7 +23,7 @@ export class ShoppingCartComponent implements OnInit {
   @ViewChild(AlertBoxComponent) modalComponent: AlertBoxComponent;
   @ViewChild(OrderSummaryComponent) orderSummaryComponent: OrderSummaryComponent;
 
-  constructor(private cartService: CartService, private orderService: OrderService) {
+  constructor(private cartService: CartService, private orderService: OrderService, private spinner: NgxSpinnerService) {
     this.modal = new Modal("shoppingCartModal", "Confirmation", "Are you sure?", "No", "Yes");
   }
 
@@ -58,6 +59,7 @@ export class ShoppingCartComponent implements OnInit {
   }
 
   checkOut(order: Order){
+    this.spinner.show();
     console.log("CHECK OUT initialized...");
     this.cartService.checkOutCart().subscribe(
       result => {
@@ -67,6 +69,7 @@ export class ShoppingCartComponent implements OnInit {
         this.orderService.addOrder(order).subscribe(() => {
           this.clearCart(true);
           this.orderSummaryComponent.dismiss();
+          this.spinner.hide();
         });
     });
   }
@@ -84,7 +87,7 @@ export class ShoppingCartComponent implements OnInit {
       this.clearCart();
     // else if(sender.id == "btnCheckOut")
     //   this.checkOut();
-    // this.modalComponent.dismiss();
+    this.modalComponent.dismiss();
   }
 
   hasCartItems(): boolean{
