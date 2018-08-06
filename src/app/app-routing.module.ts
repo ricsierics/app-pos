@@ -6,6 +6,7 @@ import { AuthGuard } from './core/services/auth-guard.service';
 import { AdminModule } from './admin/admin.module';
 import { CoreModule } from './core/core.module';
 import { ShoppingModule } from './shopping/shopping.module';
+import { NotFoundModule } from './not-found/not-found.module';
 
 const routes: Routes = [
     { path: '', component: HomeComponent, canActivate: [AuthGuard] },
@@ -13,12 +14,16 @@ const routes: Routes = [
     { path: 'admin/products', loadChildren:() => AdminModule },
     { path: 'login', loadChildren:() => CoreModule },
     { path: 'home', loadChildren:() => ShoppingModule },
-    { path: 'my', loadChildren:() => ShoppingModule }
+    { path: 'my', loadChildren:() => ShoppingModule },
+    { path: 'not-found', loadChildren:() => NotFoundModule },
+    { path: '**', redirectTo: 'not-found' } 
 ];
 
 @NgModule({
     exports: [RouterModule],
-    imports: [RouterModule.forRoot(routes)]
+    imports: [RouterModule.forRoot(routes, {
+        initialNavigation: 'enabled'
+    })]
 })
 
 export class AppRoutingModule {}
