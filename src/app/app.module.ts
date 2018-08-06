@@ -9,6 +9,7 @@ import { CoreModule } from './core/core.module';
 import { ShoppingModule } from './shopping/shopping.module';
 import { HomeComponent } from './shopping/components/home/home.component';
 import { AuthGuard } from './core/services/auth-guard.service';
+import { NgxSpinnerModule } from 'ngx-spinner'
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { AuthGuard } from './core/services/auth-guard.service';
     CoreModule,
     AdminModule,
     ShoppingModule,
+    NgxSpinnerModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, canActivate: [AuthGuard] }
     ])

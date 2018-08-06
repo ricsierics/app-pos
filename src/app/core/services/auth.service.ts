@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { of, Observable } from 'rxjs';
+import { delay } from 'rxjs/internal/operators';
 import { ActivatedRoute } from '../../../../node_modules/@angular/router';
 import { User } from '../../shared/models/User';
 
@@ -32,12 +33,12 @@ export class AuthService {
 
     this.getUserByCredentials(username, password);
     if(!this.user)
-      return of(null);
+      return of(null).pipe(delay(1200));
     if(this.user.isAdmin)
       localStorage.setItem(sessionIdKey, "session-admin");
     else
       localStorage.setItem(sessionIdKey, "session-user");
-    return of(this.user);
+    return of(this.user).pipe(delay(1200));
   }
 
   getCurrentUser(): Observable<User>{
