@@ -11,13 +11,13 @@ export class BsNavbarComponent {
 
   constructor(private _auth: AuthService, private router: Router) {}
 
+  getCurrentUser(){
+    return this._auth.getCurrentUser();
+  }
+
   logout(){
     this._auth.logout().subscribe(result => {
       this.router.navigate(['/login']);
     });
-  }
-
-  getCurrentUser(){
-    return this._auth.getCurrentUser();
   }
 }

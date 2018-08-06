@@ -13,7 +13,7 @@
           </li>
       </ng-template>
       
-      <li class="nav-item dropdown" *ngIf="getCurrentUser() | async as user; else anonymousUser">
+      <li class="nav-item dropdown" *ngIf="(getCurrentUser() | async) as user; else anonymousUser">
         <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           {{ user.username }}
         </a>
