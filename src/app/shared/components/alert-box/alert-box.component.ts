@@ -31,7 +31,7 @@ export class AlertBoxComponent implements OnInit {
     $('.close').click();
   }
 
-  show(sender: any){
+  show(sender?: any){
     this.sender = sender;
     $('#' + this.modal.id).modal('show');
   }

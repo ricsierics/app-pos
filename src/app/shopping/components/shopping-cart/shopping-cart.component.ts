@@ -10,18 +10,20 @@ import { OrderSummaryComponent } from 'shopping/components/order-summary/order-s
 import { Order } from 'shared/models/Order';
 import { OrderService } from 'shared/services/order.service';
 
-
 @Component({
   selector: 'shopping-cart',
   templateUrl: './shopping-cart.component.html',
   styleUrls: ['./shopping-cart.component.css']
 })
+
 export class ShoppingCartComponent implements OnInit {
   cart: Cart;
+  modal: Modal;
+
   @Output() addQuantityEmitter = new EventEmitter();
   @Output() deductQuantityEmitter = new EventEmitter();
   @Output() clearCartEmitter = new EventEmitter();
-  modal: Modal;
+
   @ViewChild(AlertBoxComponent) modalComponent: AlertBoxComponent;
   @ViewChild(OrderSummaryComponent) orderSummaryComponent: OrderSummaryComponent;
 
@@ -60,6 +62,7 @@ export class ShoppingCartComponent implements OnInit {
     this.cart = this.cartService.getCart();
   }
 
+  //WARNING: Fat method
   checkOut(order: Order){
     this.spinner.show();
     console.log("CHECK OUT initialized...");
@@ -72,6 +75,14 @@ export class ShoppingCartComponent implements OnInit {
           this.clearCart(true);
           this.orderSummaryComponent.dismiss();
           this.spinner.hide();
+
+          this.modal.secondaryText = null;
+          this.modal.primaryText = "Ok";
+          this.modal.title = "Check Out successful!";
+          this.modal.body = "Order Ref No.: XXX";
+          this.modalComponent.show();
+
+          this.orderSummaryComponent.ngOnInit();
         });
     });
   }
@@ -85,10 +96,10 @@ export class ShoppingCartComponent implements OnInit {
   }
 
   execute(sender: any){
-    if(sender.id == "btnClear")
+    if(sender){
+      if(sender.id == "btnClear")
       this.clearCart();
-    // else if(sender.id == "btnCheckOut")
-    //   this.checkOut();
+    }
     this.modalComponent.dismiss();
   }
 

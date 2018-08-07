@@ -17,10 +17,11 @@ export class OrderSummaryComponent implements OnInit {
   order: Order;
 
   constructor(private cartService: CartService) { 
-    this.order = new Order();
+    //this.order = new Order();
   }
 
   ngOnInit() {
+    this.order = new Order();
   }
 
   show(){
