@@ -1,0 +1,7 @@
+@media (max-width: 992px) {
+    .col-6{
+        width: 100%;
+        flex: unset;
+        max-width: unset;
+    }
+}
