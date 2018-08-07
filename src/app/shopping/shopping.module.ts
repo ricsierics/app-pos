@@ -8,6 +8,8 @@ import { SharedModule } from 'shared/shared.module';
 import { OrderSummaryComponent } from 'shopping/components/order-summary/order-summary.component';
 import { MyOrdersComponent } from 'shopping/components/my-orders/my-orders.component';
 import { ShoppingRoutingModule } from 'shopping/shopping-routing.module';
+import { MatFormFieldModule, MatInputModule, MatSortModule, MatTableModule, MatPaginatorModule } from '@angular/material';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations'
 
 //import { RouterModule } from '@angular/router';
 //import { AuthGuard } from 'core/services/auth-guard.service';
@@ -16,7 +18,14 @@ import { ShoppingRoutingModule } from 'shopping/shopping-routing.module';
   imports: [
     CommonModule,
     SharedModule,
-    ShoppingRoutingModule
+    ShoppingRoutingModule,
+    MatTableModule, //for material table
+    MatPaginatorModule, //for pagination of material table
+    NoopAnimationsModule, //disable material animation
+    MatSortModule, //for sorting of material table rows
+    MatFormFieldModule, //for filtering of material table rows
+    MatInputModule //for filtering of material table rows
+
     // RouterModule.forChild([
     //   { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
     //   { path: 'my/orders', component: MyOrdersComponent, canActivate: [AuthGuard] }
