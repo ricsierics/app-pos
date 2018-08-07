@@ -1,8 +1,9 @@
 import { Component, OnInit, EventEmitter, Output, ViewChild } from '@angular/core';
-import { Product } from '../../../shared/models/Product';
-import { ProductService } from '../../../shared/services/product.service';
-import { AdminProductFormComponent } from '../admin-product-form/admin-product-form.component';
-import { NgxSpinnerService } from '../../../../../node_modules/ngx-spinner';
+import { NgxSpinnerService } from 'ngx-spinner';
+
+import { Product } from 'shared/models/Product';
+import { ProductService } from 'shared/services/product.service';
+import { AdminProductFormComponent } from 'admin/components/admin-product-form/admin-product-form.component';
 
 @Component({
   selector: 'admin-add-product',

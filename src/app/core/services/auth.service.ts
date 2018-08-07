@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { of, Observable } from 'rxjs';
 import { delay } from 'rxjs/internal/operators';
-import { ActivatedRoute } from '../../../../node_modules/@angular/router';
-import { User } from '../../shared/models/User';
+
+import { User } from 'shared/models/User';
 
 /* Mock credentials:
    Username   Password    Role

@@ -1,12 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { LoginComponent } from './components/login/login.component';
-import { BsNavbarComponent } from './components/bs-navbar/bs-navbar.component';
+
+import { LoginComponent } from 'core/components/login/login.component';
+import { BsNavbarComponent } from 'core/components/bs-navbar/bs-navbar.component';
+import { AuthGuard } from 'core/services/auth-guard.service';
+import { AuthService } from 'core/services/auth.service';
+import { SharedModule } from 'shared/shared.module';
+import { CoreRoutingModule } from 'core/core-routing.module';
+
 //import { RouterModule } from '@angular/router';
-import { AuthGuard } from './services/auth-guard.service';
-import { AuthService } from './services/auth.service';
-import { SharedModule } from '../shared/shared.module';
-import { CoreRoutingModule } from './core-routing.module';
 
 @NgModule({
   imports: [

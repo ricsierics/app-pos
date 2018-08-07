@@ -1,5 +1,5 @@
-import { User } from "src/app/shared/models/User";
-import { GroupedItem } from "./GroupedItem";
+import { User } from "shared/models/User";
+import { GroupedItem } from "shared/models/GroupedItem";
 
 export class Order {
     items: GroupedItem[];

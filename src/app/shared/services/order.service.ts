@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Order } from 'src/app/shared/models/Order';
-import { Observable, of } from '../../../../node_modules/rxjs';
-import { HttpClient, HttpHeaders } from '../../../../node_modules/@angular/common/http';
-import { tap, catchError, delay } from '../../../../node_modules/rxjs/operators';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable, of } from 'rxjs';
+import { tap, catchError, delay } from 'rxjs/operators';
+
+import { Order } from 'shared/models/Order';
 
 const inMemoryCollectionName = "orders";
 const baseUrl = `api/${inMemoryCollectionName}`;

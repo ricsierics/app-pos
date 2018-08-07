@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { HomeComponent } from './shopping/components/home/home.component';
-import { AuthGuard } from './core/services/auth-guard.service';
-import { AdminModule } from './admin/admin.module';
-import { CoreModule } from './core/core.module';
-import { ShoppingModule } from './shopping/shopping.module';
-import { NotFoundModule } from './not-found/not-found.module';
+import { HomeComponent } from 'shopping/components/home/home.component';
+import { AuthGuard } from 'core/services/auth-guard.service';
+import { AdminModule } from 'admin/admin.module';
+import { CoreModule } from 'core/core.module';
+import { ShoppingModule } from 'shopping/shopping.module';
+import { NotFoundModule } from 'not-found/not-found.module';
 
 const routes: Routes = [
     { path: '', component: HomeComponent, canActivate: [AuthGuard] },

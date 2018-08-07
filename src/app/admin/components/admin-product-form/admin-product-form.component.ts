@@ -1,6 +1,7 @@
 import { Component, OnInit, EventEmitter, Input, Output } from '@angular/core';
-import { Product } from '../../../shared/models/Product';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+
+import { Product } from 'shared/models/Product';
 
 declare var $: any;
 

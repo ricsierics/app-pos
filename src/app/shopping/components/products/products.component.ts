@@ -1,8 +1,9 @@
-import { Component, OnInit, Output } from '@angular/core';
-import { ProductService } from '../../../shared/services/product.service';
-import { Product } from '../../../shared/models/Product';
-import { GroupedItem } from '../../../shared/models/GroupedItem';
-import { CartService } from '../../services/cart.service';
+import { Component, OnInit } from '@angular/core';
+
+import { ProductService } from 'shared/services/product.service';
+import { Product } from 'shared/models/Product';
+import { GroupedItem } from 'shared/models/GroupedItem';
+import { CartService } from 'shopping/services/cart.service';
 
 @Component({
   selector: 'products',

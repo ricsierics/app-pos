@@ -1,7 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Product } from 'src/app/shared/models/Product';
-import { ProductsComponent } from '../products/products.component';
-import { GroupedItem } from '../../../shared/models/GroupedItem';
+
+import { Product } from 'shared/models/Product';
+import { ProductsComponent } from 'shopping/components/products/products.component';
+import { GroupedItem } from 'shared/models/GroupedItem';
 
 @Component({
   selector: 'home',

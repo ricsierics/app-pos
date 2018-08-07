@@ -1,13 +1,15 @@
 import { Component, OnInit, EventEmitter, Output, ViewChild } from '@angular/core';
-import { CartService } from '../../services/cart.service';
-import { Cart } from 'src/app/shared/models/Cart';
-import { GroupedItem } from '../../../shared/models/GroupedItem';
-import { Modal } from 'src/app/shared/models/Modal';
-import { AlertBoxComponent } from '../../../shared/components/alert-box/alert-box.component';
-import { OrderSummaryComponent } from '../order-summary/order-summary.component';
-import { Order } from 'src/app/shared/models/Order';
-import { OrderService } from '../../../shared/services/order.service';
 import { NgxSpinnerService } from 'ngx-spinner';
+
+import { CartService } from 'shopping/services/cart.service';
+import { Cart } from 'shared/models/Cart';
+import { GroupedItem } from 'shared/models/GroupedItem';
+import { Modal } from 'shared/models/Modal';
+import { AlertBoxComponent } from 'shared/components/alert-box/alert-box.component';
+import { OrderSummaryComponent } from 'shopping/components/order-summary/order-summary.component';
+import { Order } from 'shared/models/Order';
+import { OrderService } from 'shared/services/order.service';
+
 
 @Component({
   selector: 'shopping-cart',

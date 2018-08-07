@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from '../../services/auth.service';
-import { NgForm } from '../../../../../node_modules/@angular/forms';
-import { NgxSpinnerService } from '../../../../../node_modules/ngx-spinner';
+import { NgForm } from '@angular/forms';
+import { NgxSpinnerService } from 'ngx-spinner';
+
+import { AuthService } from 'core/services/auth.service';
 
 @Component({
   selector: 'app-login',

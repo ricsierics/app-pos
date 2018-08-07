@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Product } from 'src/app/shared/models/Product';
-import { ProductService } from '../../../shared/services/product.service';
-import { NgxSpinnerService } from '../../../../../node_modules/ngx-spinner';
+import { NgxSpinnerService } from 'ngx-spinner';
+
+import { Product } from 'shared/models/Product';
+import { ProductService } from 'shared/services/product.service';
 
 @Component({
   selector: 'app-admin-products',

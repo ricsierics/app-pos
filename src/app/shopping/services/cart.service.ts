@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
-import { Cart } from '../../shared/models/Cart';
-import { Product } from '../../shared/models/Product';
-import { ProductService } from '../../shared/services/product.service';
-import { GroupedItem } from '../../shared/models/GroupedItem';
 import { Observable, forkJoin } from 'rxjs';
 import { map} from 'rxjs/operators';
-import { AuthService } from '../../core/services/auth.service';
+
+import { Cart } from 'shared/models/Cart';
+import { Product } from 'shared/models/Product';
+import { ProductService } from 'shared/services/product.service';
+import { GroupedItem } from 'shared/models/GroupedItem';
+import { AuthService } from 'core/services/auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -69,6 +70,8 @@ export class CartService {
     //add orders based on cart items
 
     //Warning: Need to perform transaction scope
+
+    //Warnig: Fat method, breakdown operations
 
     let groupedItems = this.getGroupedItems();
 

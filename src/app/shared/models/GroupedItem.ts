@@ -1,4 +1,4 @@
-import { Product } from "./Product";
+import { Product } from "shared/models/Product";
 
 export class GroupedItem {
     items: Product[];

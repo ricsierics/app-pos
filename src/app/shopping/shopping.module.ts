@@ -1,14 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ProductsComponent } from './components/products/products.component';
+
+import { ProductsComponent } from 'shopping/components/products/products.component';
+import { HomeComponent } from 'shopping/components/home/home.component';
+import { ShoppingCartComponent } from 'shopping/components/shopping-cart/shopping-cart.component';
+import { SharedModule } from 'shared/shared.module';
+import { OrderSummaryComponent } from 'shopping/components/order-summary/order-summary.component';
+import { MyOrdersComponent } from 'shopping/components/my-orders/my-orders.component';
+import { ShoppingRoutingModule } from 'shopping/shopping-routing.module';
+
 //import { RouterModule } from '@angular/router';
-import { HomeComponent } from './components/home/home.component';
-import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
-import { SharedModule } from '../shared/shared.module';
-//import { AuthGuard } from '../core/services/auth-guard.service';
-import { OrderSummaryComponent } from './components/order-summary/order-summary.component';
-import { MyOrdersComponent } from './components/my-orders/my-orders.component';
-import { ShoppingRoutingModule } from './shopping-routing.module';
+//import { AuthGuard } from 'core/services/auth-guard.service';
 
 @NgModule({
   imports: [

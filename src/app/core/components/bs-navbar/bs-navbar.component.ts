@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from '../../services/auth.service';
 import { NgxSpinnerService } from 'ngx-spinner';
+
+import { AuthService } from 'core/services/auth.service';
 
 @Component({
   selector: 'bs-navbar',

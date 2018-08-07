@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
-import { Product } from '../models/Product';
-import { catchError, tap, map, switchMap, delay } from 'rxjs/operators';
+import { catchError, tap, switchMap, delay } from 'rxjs/operators';
+
+import { Product } from 'shared/models/Product';
 
 const inMemoryCollectionName = "products";
 const baseUrl: string = `api/${inMemoryCollectionName}`;

@@ -1,9 +1,8 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { Order } from '../../../shared/models/Order';
-import { Cart } from 'src/app/shared/models/Cart';
-import { CartService } from '../../services/cart.service';
-import { OrderService } from '../../../shared/services/order.service';
-import {  } from 'util/'
+
+import { Order } from 'shared/models/Order';
+import { Cart } from 'shared/models/Cart';
+import { CartService } from 'shopping/services/cart.service';
 
 declare var $: any;
 

@@ -1,14 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { InMemoryDataService } from './services/in-memory-data.service'
-import { ProductService } from './services/product.service';
-import { HttpClientModule } from '../../../node_modules/@angular/common/http';
-import { AlertBoxComponent } from './components/alert-box/alert-box.component';
-import { NgxSpinnerModule } from 'ngx-spinner';
-import { CssLoaderComponent } from './components/css-loader/css-loader.component'
+import { InMemoryDataService } from 'shared/services/in-memory-data.service'
+import { ProductService } from 'shared/services/product.service';
+import { AlertBoxComponent } from 'shared/components/alert-box/alert-box.component';
+import { CssLoaderComponent } from 'shared/components/css-loader/css-loader.component'
 
 @NgModule({
   imports: [
