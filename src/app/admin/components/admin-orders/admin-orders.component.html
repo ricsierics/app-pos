@@ -14,11 +14,11 @@
     <tbody>
       <tr *ngFor="let order of orders">
         <td>{{ order.totalCount}}</td>
-        <td>{{ order.totalAmount}}</td>
+        <td>{{ order.totalAmount | currency:'₱ '}}</td>
         <td>{{ order.paymentMethod}}</td>
-        <td>{{ order.paidAmount}}</td>
-        <td>{{ order.changeAmount}}</td>
-        <td>{{ order.orderDate | date: 'MM/dd/yyyy'}}</td>
+        <td>{{ order.paidAmount | currency:'₱ '}}</td>
+        <td>{{ order.changeAmount | currency:'₱ '}}</td>
+        <td>{{ order.orderDate | date:'medium'}}</td>
         <td>{{ order.user.username}}</td>
     </tr>
     </tbody>

@@ -31,13 +31,13 @@
 </table>
 
 <div class="row">
-  <alert-box [modal]="modal" (onBtnPrimaryEmitter)="execute($event)"></alert-box>
+  <alert-box [modal]="modal"></alert-box>
   <order-summary (onSubmitEmitter)="checkOut($event)" ></order-summary>
   <div class="col-6 clear-container">
       <button #btnClear
         id="btnClear"
         class="btn btn-danger cart-button" 
-        (click)="showConfirmation(btnClear)" 
+        (click)="clearCart()" 
         [disabled]="!hasCartItems()">
           CLEAR CART
       </button>

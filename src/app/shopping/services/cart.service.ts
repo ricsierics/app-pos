@@ -14,9 +14,9 @@ import { AuthService } from 'core/services/auth.service';
 export class CartService {
   cart: Cart;
 
-  constructor(private _productService: ProductService, private _authService: AuthService) {
+  constructor(private productService: ProductService, private authService: AuthService) {
     this.cart = new Cart;
-    this._authService.getCurrentUser().subscribe(
+    this.authService.getCurrentUser().subscribe(
       user => this.cart.user = user
     );
 
@@ -77,7 +77,7 @@ export class CartService {
 
     let observables: Observable<Product>[] = [];
     groupedItems.forEach(groupedItem => {
-      observables.push(this._productService.decrementStock(groupedItem.items[0].id, groupedItem.subQuantity));
+      observables.push(this.productService.decrementStock(groupedItem.items[0].id, groupedItem.subQuantity));
     });
 
     return forkJoin(observables).pipe(

@@ -12,6 +12,7 @@ declare var $: any;
 export class AlertBoxComponent implements OnInit {
   @Input() modal: Modal;
   @Output() onBtnPrimaryEmitter = new EventEmitter();
+
   sender: any;
 
   constructor() { }

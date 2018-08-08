@@ -12,21 +12,21 @@ import { AuthService } from 'core/services/auth.service';
 })
 export class LoginComponent {
   
-  constructor(private _auth: AuthService, private router: Router, private spinner: NgxSpinnerService) { }
+  constructor(private authService: AuthService, private router: Router, private spinnerService: NgxSpinnerService) { }
 
   submit(form: NgForm){
     let username: string = form.value.username;
     let password: string = form.value.password;
     let returnUrl: string;
-    this.spinner.show();
-    this._auth.login(username, password).subscribe(user => {
+    this.spinnerService.show();
+    this.authService.login(username, password).subscribe(user => {
       if(user) {
         returnUrl = localStorage.getItem("returnUrl");
-        this.spinner.hide();
+        this.spinnerService.hide();
         this.router.navigate([returnUrl]);
       }
       form.control.setErrors({'invalidlogin':true});
-      this.spinner.hide();
+      this.spinnerService.hide();
     });
   }
 

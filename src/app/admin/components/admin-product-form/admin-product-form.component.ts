@@ -11,7 +11,6 @@ declare var $: any;
   styleUrls: ['./admin-product-form.component.css']
 })
 export class AdminProductFormComponent implements OnInit {
-  form: FormGroup;
   @Input() model: Product;
   @Output() onBtnPrimaryClickEventEmitter = new EventEmitter();
   @Input() modalId: string;
@@ -19,6 +18,8 @@ export class AdminProductFormComponent implements OnInit {
   @Input() btnPrimaryLabel: string;
   @Input() isEditMode: boolean;
 
+  form: FormGroup;
+  
   constructor(private fb: FormBuilder) { 
     this.model = new Product();
     this.createForm();

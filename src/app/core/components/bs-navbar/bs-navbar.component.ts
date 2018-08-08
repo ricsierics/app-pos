@@ -11,16 +11,16 @@ import { AuthService } from 'core/services/auth.service';
 })
 export class BsNavbarComponent {
 
-  constructor(private _auth: AuthService, private router: Router, private spinner: NgxSpinnerService) {}
+  constructor(private authService: AuthService, private router: Router, private spinnerService: NgxSpinnerService) {}
 
   getCurrentUser(){
-    return this._auth.getCurrentUser();
+    return this.authService.getCurrentUser();
   }
 
   logout(){
-    this.spinner.show();
-    this._auth.logout().subscribe(result => {
-      this.spinner.hide();
+    this.spinnerService.show();
+    this.authService.logout().subscribe(result => {
+      this.spinnerService.hide();
       this.router.navigate(['/login']);
     });
   }

@@ -15,7 +15,7 @@ export class ProductsComponent implements OnInit {
   filteredProducts: Product[] = [];
   isLoaded = false;
   
-  constructor(private _service: ProductService, private _cartService: CartService) { }
+  constructor(private productService: ProductService, private cartService: CartService) { }
 
   ngOnInit() {
     this.getProducts();
@@ -23,7 +23,7 @@ export class ProductsComponent implements OnInit {
 
   //Warning: duplicate code in admin-products.component.ts
   getProducts(){
-    this._service.getAll().subscribe(
+    this.productService.getAll().subscribe(
       (values) => { 
         this.products = values;
         this.filteredProducts = this.products;
@@ -44,7 +44,7 @@ export class ProductsComponent implements OnInit {
     if(product.stockQty == 0)
       return;
     product.stockQty -= 1;
-    this._cartService.addToCart(selectedProduct);
+    this.cartService.addToCart(selectedProduct);
   }
 
   onDeductQuantity(selectedProduct: Product){

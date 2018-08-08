@@ -10,10 +10,10 @@ import { AuthService } from 'core/services/auth.service';
 })
 export class AdminAuthGuard implements CanActivate {
 
-  constructor(private auth: AuthService) { }
+  constructor(private authService: AuthService) { }
 
   canActivate(): Observable<boolean>{
-    return this.auth.getCurrentUser().pipe(
+    return this.authService.getCurrentUser().pipe(
       map(user => user.isAdmin)
     );
   }

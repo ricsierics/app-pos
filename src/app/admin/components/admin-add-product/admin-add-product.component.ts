@@ -18,7 +18,7 @@ export class AdminAddProductComponent implements OnInit {
   isEditMode = false;
   @ViewChild(AdminProductFormComponent) productForm: AdminProductFormComponent;
 
-  constructor(private _productService: ProductService, private spinner: NgxSpinnerService) {
+  constructor(private productService: ProductService, private spinnerService: NgxSpinnerService) {
    }
 
   ngOnInit() {
@@ -29,16 +29,16 @@ export class AdminAddProductComponent implements OnInit {
   }
 
   onAdd(newProduct: Product){
-    this.spinner.show();
-    this._productService.add(newProduct).subscribe(
+    this.spinnerService.show();
+    this.productService.add(newProduct).subscribe(
       () => {
         this.onAddEmitter.emit(newProduct);
         this.productForm.resetForm();
         this.productForm.closeForm();
-        this.spinner.hide();
+        this.spinnerService.hide();
       },
       (error: any) => {
-        this.spinner.hide();
+        this.spinnerService.hide();
         if (error.error instanceof Error){
           console.log("Client-side error occured.");
         } else {

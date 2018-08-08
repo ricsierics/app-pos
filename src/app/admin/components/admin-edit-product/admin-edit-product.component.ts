@@ -19,7 +19,7 @@ export class AdminEditProductComponent implements OnInit {
   isEditMode = true;
   @ViewChild(AdminProductFormComponent) productForm: AdminProductFormComponent;
   
-  constructor(private _service: ProductService, private spinner: NgxSpinnerService) { }
+  constructor(private productService: ProductService, private spinnerService: NgxSpinnerService) { }
 
   ngOnInit() {
     this.modalId = "modalReactiveEditMode" + this.model.id;
@@ -30,15 +30,15 @@ export class AdminEditProductComponent implements OnInit {
   }
 
   onSave(modifiedProduct: Product){
-    this.spinner.show();
-    this._service.edit(modifiedProduct).subscribe(
+    this.spinnerService.show();
+    this.productService.edit(modifiedProduct).subscribe(
       () => {
         this.productForm.closeForm();
         this.onEditEmitter.emit();
-        this.spinner.hide();
+        this.spinnerService.hide();
       },
       (error: any) => {
-        this.spinner.hide();
+        this.spinnerService.hide();
         if (error.error instanceof Error){
           console.log("Client-side error occured.");
         } else {

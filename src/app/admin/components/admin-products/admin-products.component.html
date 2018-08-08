@@ -1,3 +1,4 @@
+<alert-box [modal]="modal"></alert-box>
 <table class="table">
   <thead>
     <tr>
@@ -15,11 +16,11 @@
       <td>{{ product.name }}</td>
       <td>{{ product.description }}</td>
       <td>{{ product.stockQty }}</td>
-      <td>{{ product.price }}</td>
+      <td>{{ product.price | currency:'₱ ' }}</td>
       <td>
         <div>
             <admin-edit-product [model]="product" (onEditEmitter)="getProducts()"></admin-edit-product>
-            <button (click)="onClickDeleteProduct(product)" class="fas fa-trash-alt"></button>
+            <button (click)="onDeleteProduct(product)" class="fas fa-trash-alt"></button>
         </div>
       </td>
     </tr>
