@@ -11,13 +11,13 @@
     <tr *ngFor="let item of getGroupedItems()">
       <ng-container *ngIf="item.subQuantity > 0">
           <td scope="row">{{ item.subName }}</td>
-          <td>{{ item.subPrice }}</td>
+          <td>{{ item.subPrice | currency:'₱ ' }}</td>
           <td>
             <span class="fas fa-minus-square" (click)="deductQuantity(item)"></span>
             {{ item.subQuantity }}
             <span class="fas fa-plus-square" (click)="addQuantity(item)"></span>
           </td>
-          <td>{{ item.subTotalPrice }}</td>
+          <td>{{ item.subTotalPrice | currency:'₱ ' }}</td>
       </ng-container>
     </tr>
   </tbody>
@@ -25,7 +25,7 @@
     <tr>
       <th colspan="2">TOTAL</th>
       <th>{{ cart.totalItems }}</th>
-      <th>{{ cart.totalPrice }}</th>
+      <th>{{ cart.totalPrice | currency:'₱ ' }}</th>
     </tr>
   </tfoot>
 </table>

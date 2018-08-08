@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
-import { tap, catchError, delay } from 'rxjs/operators';
+import { tap, catchError, delay, map } from 'rxjs/operators';
 
 import { Order } from 'shared/models/Order';
 
@@ -34,9 +34,12 @@ export class OrderService {
     );
   }
 
-  // getOrdersByUsername(userName: string){
-  //  return this.http.get<Order>(`${baseUrl}/{}) 
-  // }
+  getOrdersByUsername(userName: string){
+    return this.getOrders().pipe(
+      map(result => result.filter(x => x.user.username == userName)),
+      catchError(this.handleError('getOrdersByUsername', []))
+    );
+  }
 
   private log(message: string){
     console.log(message);

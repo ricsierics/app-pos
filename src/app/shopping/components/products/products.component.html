@@ -8,7 +8,7 @@
           <ng-container *ngIf="product.stockQty > 0">
             <div class="dynacell" (click)="onSelect(product)">
                 <p>Name: {{ product.name }}</p>
-                <p>Price: {{ product.price}}</p>
+                <p>Price: {{ product.price | currency:'₱ '}}</p>
                 <p>Stock: {{ product.stockQty}}</p>
             </div>  
             </ng-container>

@@ -16,9 +16,7 @@ export class OrderSummaryComponent implements OnInit {
   cart: Cart;
   order: Order;
 
-  constructor(private cartService: CartService) { 
-    //this.order = new Order();
-  }
+  constructor(private cartService: CartService) {}
 
   ngOnInit() {
     this.order = new Order();
@@ -40,8 +38,7 @@ export class OrderSummaryComponent implements OnInit {
     this.order.totalAmount = this.cart.totalPrice;
     this.order.paymentMethod = "Cash on delivery";
     this.order.user = this.cart.user;
-    let dateString = new Date().toJSON().slice(0,10).replace(/-/g,'/');
-    this.order.orderDate = new Date(dateString);
+    this.order.orderDate = new Date();
   }
 
   computeChange(){
