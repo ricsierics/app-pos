@@ -22,7 +22,7 @@ export class OrderService {
     return this.http.post<Order>(baseUrl, newOrder, httpOptions).pipe(
       tap(addedOrder => { this.log("Added order:"); console.log(addedOrder) }),
       catchError(this.handleError<Order>('addOrder')),
-      (delay(1000))
+      (delay(800))
     );
   }
 
@@ -30,7 +30,7 @@ export class OrderService {
     return this.http.get<Order[]>(baseUrl).pipe(
       tap(result => { this.log("Fetched orders:");  console.log(result)}),
       catchError(this.handleError('getOrders', [])),
-      (delay(1000))
+      (delay(800))
     );
   }
 

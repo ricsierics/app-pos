@@ -34,12 +34,12 @@ export class AuthService {
 
     this.getUserByCredentials(username, password);
     if(!this.user)
-      return of(null).pipe(delay(1200));
+      return of(null).pipe(delay(1000));
     if(this.user.isAdmin)
       localStorage.setItem(sessionIdKey, "session-admin");
     else
       localStorage.setItem(sessionIdKey, "session-user");
-    return of(this.user).pipe(delay(1200));
+    return of(this.user).pipe(delay(1000));
   }
 
   getCurrentUser(): Observable<User>{
@@ -55,7 +55,7 @@ export class AuthService {
 
   logout(): Observable<boolean>{
     localStorage.removeItem(sessionIdKey);
-    return of(true).pipe(delay(1200));
+    return of(true).pipe(delay(1000));
   }
 
   private getUserByCredentials(username: string, password: string){

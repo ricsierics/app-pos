@@ -22,7 +22,7 @@ export class ProductService {
     return this._http.get<Product[]>(baseUrl).pipe(
       tap(result => { this.log("Fetched products: "); console.log(result) }),
       catchError(this.handleError('getAll', [])),
-      (delay(1000))
+      (delay(800))
     );
   }
 
@@ -30,7 +30,7 @@ export class ProductService {
     return this._http.get<Product>(`${baseUrl}/${id}`).pipe(
       tap(result => { this.log("Fetched product by id: "); console.log(result) }),
       catchError(this.handleError('getAll', null)),
-      (delay(1000))
+      (delay(800))
     );
   }
 
@@ -39,7 +39,7 @@ export class ProductService {
     return this._http.post<Product>(baseUrl, newProduct, httpOptions).pipe(
       tap((addedProduct: Product) => this.log(`added product w/ code = ${addedProduct.code}`)),
       catchError(this.handleError<Product>('add')),
-      (delay(1000))
+      (delay(800))
     );
   }
 
@@ -47,7 +47,7 @@ export class ProductService {
     return this._http.put(baseUrl, existingProduct, httpOptions).pipe(
       tap(result => this.log(`edited product with id = ${existingProduct.id}`)),
       catchError(this.handleError<any>('edit')),
-      (delay(1000))
+      (delay(800))
     );
   }
   
@@ -56,7 +56,7 @@ export class ProductService {
     return this._http.delete<Product>(url, httpOptions).pipe(
       tap(_ => this.log(`Deleted product id = ${id}`)),
       catchError(this.handleError<any>('delete')),
-      (delay(1000))
+      (delay(800))
     );
   }
 
@@ -70,7 +70,7 @@ export class ProductService {
         console.log(result);
         return this.edit(result);
       }), 
-      (delay(1000))
+      (delay(800))
     );
    }
 
@@ -81,7 +81,7 @@ export class ProductService {
   private handleError<T> (operation = 'operation', result? : T){
     return (error: any): Observable<T> => {
       this.log(`${operation} failed: ${error.message}`);
-      return of(result as T).pipe(delay(1000));
+      return of(result as T).pipe(delay(800));
     }
   }
 }

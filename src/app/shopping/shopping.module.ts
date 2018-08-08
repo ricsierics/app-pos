@@ -1,7 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations'
-import { MatFormFieldModule, MatInputModule, MatSortModule, MatTableModule, MatPaginatorModule } from '@angular/material';
 
 import { ProductsComponent } from 'shopping/components/products/products.component';
 import { HomeComponent } from 'shopping/components/home/home.component';
@@ -18,13 +16,7 @@ import { ShoppingRoutingModule } from 'shopping/shopping-routing.module';
   imports: [
     CommonModule,
     SharedModule,
-    ShoppingRoutingModule,
-    // MatTableModule, //for material table
-    // MatPaginatorModule, //for pagination of material table
-    // NoopAnimationsModule, //disable material animation
-    // MatSortModule, //for sorting of material table
-    // MatFormFieldModule, //for filtering of material table
-    // MatInputModule //for filtering of material table
+    ShoppingRoutingModule
 
     // RouterModule.forChild([
     //   { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
