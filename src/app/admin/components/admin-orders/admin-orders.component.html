@@ -1,26 +1,50 @@
-<table class="table">
-    <thead>
-    <tr>
-        <th>Total Quantity</th>
-        <th>Total Price</th>
-        <th>Payment Method</th>
-        <th>Paid Amount</th>
-        <th>Change Amount</th>
-        <th>Order Date</th>
-        <th>User</th>
-    </tr>
-    </thead>
+<mat-form-field>
+  <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter" type="text">
+</mat-form-field>
 
-    <tbody>
-      <tr *ngFor="let order of orders">
-        <td>{{ order.totalCount}}</td>
-        <td>{{ order.totalAmount | currency:'₱ '}}</td>
-        <td>{{ order.paymentMethod}}</td>
-        <td>{{ order.paidAmount | currency:'₱ '}}</td>
-        <td>{{ order.changeAmount | currency:'₱ '}}</td>
-        <td>{{ order.orderDate | date:'medium'}}</td>
-        <td>{{ order.user.username}}</td>
-    </tr>
-    </tbody>
+<table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
+    <td mat-cell *matCellDef="let order">{{ order.id }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="totalCount">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Item Count</th>
+    <td mat-cell *matCellDef="let order">{{ order.totalCount }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="totalAmount">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Total Price</th>
+    <td mat-cell *matCellDef="let order">{{ order.totalAmount | currency:'₱ '}}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="paidAmount">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Paid Amount</th>
+    <td mat-cell *matCellDef="let order">{{ order.paidAmount | currency:'₱ ' }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="changeAmount">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Change Amount</th>
+    <td mat-cell *matCellDef="let order">{{ order.changeAmount | currency:'₱ '}}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="paymentMethod">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Payment Method</th>
+    <td mat-cell *matCellDef="let order">{{ order.paymentMethod }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="orderDate">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Order Date</th>
+    <td mat-cell *matCellDef="let order">{{ order.orderDate | date:'medium' }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="user">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>User</th>
+    <td mat-cell *matCellDef="let order">{{ order.user.username }}</td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
 <css-loader [hidden]="isLoaded"></css-loader>
+<mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>

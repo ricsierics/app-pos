@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 
 import { OrderService } from 'shared/services/order.service';
-import { Order } from 'shared/models/Order';
 
 @Component({
   selector: 'app-admin-orders',
@@ -9,7 +9,11 @@ import { Order } from 'shared/models/Order';
   styleUrls: ['./admin-orders.component.css']
 })
 export class AdminOrdersComponent implements OnInit {
-  orders: Order[];
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
+
+  dataSource: MatTableDataSource<any>;
+  displayedColumns: string[] = ['id', 'totalCount', 'totalAmount', 'paidAmount', 'changeAmount', 'paymentMethod', 'orderDate', 'user' ];
   isLoaded = false;
 
   constructor(private orderService: OrderService) { }
@@ -19,10 +23,17 @@ export class AdminOrdersComponent implements OnInit {
   }
 
   private getOrders(){
-    this.orderService.getOrders().subscribe(result => {
-      this.orders = result;
+    this.orderService.getOrders().subscribe(orders => {
+      if(orders){
+        this.dataSource = new MatTableDataSource(orders);
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
+      }
       this.isLoaded = true;
     });
   }
 
+  applyFilter(filterValue: string){
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
 }

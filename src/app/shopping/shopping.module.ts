@@ -19,12 +19,12 @@ import { ShoppingRoutingModule } from 'shopping/shopping-routing.module';
     CommonModule,
     SharedModule,
     ShoppingRoutingModule,
-    MatTableModule, //for material table
-    MatPaginatorModule, //for pagination of material table
-    NoopAnimationsModule, //disable material animation
-    MatSortModule, //for sorting of material table
-    MatFormFieldModule, //for filtering of material table
-    MatInputModule //for filtering of material table
+    // MatTableModule, //for material table
+    // MatPaginatorModule, //for pagination of material table
+    // NoopAnimationsModule, //disable material animation
+    // MatSortModule, //for sorting of material table
+    // MatFormFieldModule, //for filtering of material table
+    // MatInputModule //for filtering of material table
 
     // RouterModule.forChild([
     //   { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
