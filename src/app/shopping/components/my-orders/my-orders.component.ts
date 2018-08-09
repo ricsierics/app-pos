@@ -21,11 +21,13 @@ export class MyOrdersComponent implements OnInit {
   ngOnInit() {
     this.authService.getCurrentUser().subscribe(user => {
       this.orderService.getOrdersByUsername(user.username).subscribe(orders => {
-        if(orders)
-        console.log(orders);
-        this.dataSource = new MatTableDataSource(orders);
-        this.dataSource.paginator = this.paginator;
-        this.dataSource.sort = this.sort;
+        if(orders) {
+          console.log("Orders of current user:");
+          console.log(orders);
+          this.dataSource = new MatTableDataSource(orders);
+          this.dataSource.paginator = this.paginator;
+          this.dataSource.sort = this.sort;
+        }
       });
     });
   }
