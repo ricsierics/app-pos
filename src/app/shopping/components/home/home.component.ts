@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 
 import { Product } from 'shared/models/Product';
 import { ProductsComponent } from 'shopping/components/products/products.component';
@@ -9,17 +9,10 @@ import { GroupedItem } from 'shared/models/GroupedItem';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent {
   @ViewChild(ProductsComponent) productsComponent: ProductsComponent;
 
   constructor() { }
-
-  ngOnInit() {
-  }
-
-  onSelect(product: Product){
-    
-  }
 
   addQuantity(product: Product){
     this.productsComponent.onSelect(product);

@@ -33,11 +33,12 @@ export class AdminProductFormComponent implements OnInit {
     this.form = this.fb.group({
       id: [this.model.id],
       code: [this.model.code],
-      name: ['', [Validators.required]],
-      description: ['', Validators.required],
+      name: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(60)]], //should be unique
+      description: ['', [Validators.required, Validators.minLength(15), Validators.maxLength(150)]],
       price: ['', [Validators.required]],
-      stockQty: ['', [Validators.required]],
-      uom: ['', [Validators.required]],
+      stockQty: ['', [Validators.required, Validators.pattern("^[0-9]+$")]],
+      uom: ['', [Validators.required, Validators.minLength(5), Validators.pattern("^[a-zA-Z]+$")]],
+      //expiration: [new Date().toDateString(), [Validators.required]] //Why this is not working?
       expiration: ['', [Validators.required]]
     });
   }

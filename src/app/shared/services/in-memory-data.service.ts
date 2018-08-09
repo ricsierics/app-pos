@@ -30,7 +30,7 @@ const mockProduct3: Product = {
   name: "Product 3", 
   description: "Third product", 
   price: 3.50, 
-  stockQty: 300, 
+  stockQty: 3, 
   uom: "PC", 
   expiration: new Date("03/01/2019")
 }
@@ -41,7 +41,7 @@ const mockProduct4: Product = {
   name: "Product 4", 
   description: "Fourth product expired", 
   price: 1500, 
-  stockQty: 3, 
+  stockQty: 2, 
   uom: "PC", 
   expiration: new Date("04/01/2018")
 }
