@@ -23,8 +23,8 @@ export class ProductsComponent implements OnInit {
 
   //Warning: duplicate code in admin-products.component.ts
   getProducts(){
-    this.productService.getAll().subscribe(
-      (values) => { 
+    this.productService.getAllNotExpired().subscribe(
+      (values) => {
         this.products = values;
         this.filteredProducts = this.products;
         this.isLoaded = true;

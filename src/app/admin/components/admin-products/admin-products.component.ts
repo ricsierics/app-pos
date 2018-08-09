@@ -29,7 +29,8 @@ export class AdminProductsComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(){
-    this.deleteProductSubscription.unsubscribe();
+    if(this.deleteProductSubscription)
+      this.deleteProductSubscription.unsubscribe();
   }
 
   getProducts(){
@@ -73,5 +74,12 @@ export class AdminProductsComponent implements OnInit, OnDestroy {
           }
         });
     });
+  }
+
+  isExpired(dateString: string): boolean{
+    if(dateString){
+      return new Date(dateString) < new Date();
+    }
+    return true;
   }
 }

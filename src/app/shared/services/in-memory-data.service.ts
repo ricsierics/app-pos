@@ -35,6 +35,17 @@ const mockProduct3: Product = {
   expiration: new Date("03/01/2019")
 }
 
+const mockProduct4: Product = {
+  id: 4, 
+  code: "ABCDE00004", 
+  name: "Product 4", 
+  description: "Fourth product expired", 
+  price: 1500, 
+  stockQty: 3, 
+  uom: "PC", 
+  expiration: new Date("04/01/2018")
+}
+
 const mockUser: User = {
   username: "user",
   isAdmin: false
@@ -48,7 +59,7 @@ const mockAdmin: User = {
 export class InMemoryDataService implements InMemoryDbService {
   
   createDb() {
-    const products = [ mockProduct1, mockProduct2, mockProduct3 ];
+    const products = [ mockProduct1, mockProduct2, mockProduct3, mockProduct4 ];
 
     const orders = [
       {

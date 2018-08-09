@@ -7,16 +7,18 @@
         <th>DESCRIPTION</th>
         <th>STOCK QTY</th>
         <th>PRICE</th>
+        <th>EXPIRY</th>
         <th>ACTION</th>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let product of products">
+    <tr *ngFor="let product of products" [class.expired]="isExpired(product.expiration)">
       <td>{{ product.code }}</td>
       <td>{{ product.name }}</td>
       <td>{{ product.description }}</td>
       <td>{{ product.stockQty }}</td>
       <td>{{ product.price | currency:'₱ ' }}</td>
+      <td>{{ product.expiration | date }}</td>
       <td>
         <div>
             <admin-edit-product [model]="product" (onEditEmitter)="getProducts()"></admin-edit-product>

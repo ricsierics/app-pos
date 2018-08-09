@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
-import { catchError, tap, switchMap, delay } from 'rxjs/operators';
+import { catchError, tap, switchMap, delay, map } from 'rxjs/operators';
 
 import { Product } from 'shared/models/Product';
 
@@ -23,6 +23,12 @@ export class ProductService {
       tap(result => { this.log("Fetched products: "); console.log(result) }),
       catchError(this.handleError('getAll', [])),
       (delay(800))
+    );
+  }
+
+  getAllNotExpired(): Observable<Product[]>{
+    return this.getAll().pipe(
+      map(orders => orders.filter(order => new Date(order.expiration) >= new Date()))
     );
   }
 
@@ -72,7 +78,7 @@ export class ProductService {
       }), 
       (delay(800))
     );
-   }
+  }
 
   private log(message: string){
     console.log(message);
