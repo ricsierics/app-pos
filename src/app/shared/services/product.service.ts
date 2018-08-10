@@ -16,10 +16,10 @@ const httpOptions = {
 })
 export class ProductService {
 
-  constructor(private _http: HttpClient) {}
+  constructor(private http: HttpClient) {}
 
   getAll(): Observable<Product[]> {
-    return this._http.get<Product[]>(baseUrl).pipe(
+    return this.http.get<Product[]>(baseUrl).pipe(
       tap(result => { this.log("Fetched products: "); console.log(result) }),
       catchError(this.handleError('getAll', [])),
       (delay(800))
@@ -33,7 +33,7 @@ export class ProductService {
   }
 
   getById(id: number): Observable<Product>{
-    return this._http.get<Product>(`${baseUrl}/${id}`).pipe(
+    return this.http.get<Product>(`${baseUrl}/${id}`).pipe(
       tap(result => { this.log("Fetched product by id: "); console.log(result) }),
       catchError(this.handleError('getAll', null)),
       (delay(800))
@@ -42,7 +42,7 @@ export class ProductService {
 
   add(newProduct: Product): Observable<Product> {
     newProduct.code = Product.generateCode();
-    return this._http.post<Product>(baseUrl, newProduct, httpOptions).pipe(
+    return this.http.post<Product>(baseUrl, newProduct, httpOptions).pipe(
       tap((addedProduct: Product) => this.log(`added product w/ code = ${addedProduct.code}`)),
       catchError(this.handleError<Product>('add')),
       (delay(800))
@@ -50,7 +50,7 @@ export class ProductService {
   }
 
   edit(existingProduct: Product): Observable<Product>{
-    return this._http.put(baseUrl, existingProduct, httpOptions).pipe(
+    return this.http.put(baseUrl, existingProduct, httpOptions).pipe(
       tap(result => this.log(`edited product with id = ${existingProduct.id}`)),
       catchError(this.handleError<any>('edit')),
       (delay(800))
@@ -59,10 +59,25 @@ export class ProductService {
   
   delete(id: number): Observable<Product> {
     const url = `${baseUrl}/${id}`;
-    return this._http.delete<Product>(url, httpOptions).pipe(
+    return this.http.delete<Product>(url, httpOptions).pipe(
       tap(_ => this.log(`Deleted product id = ${id}`)),
       catchError(this.handleError<any>('delete')),
       (delay(800))
+    );
+  }
+
+  isUnique(productName:string){
+    return this.getAll().pipe(
+      map(products => {
+        let isUnique: boolean = true;
+        products.some(product => {
+          if(product.name.toLowerCase() == productName.toLowerCase())
+            isUnique = false;
+            return false;
+        })
+        return isUnique;
+      }), 
+      catchError(this.handleError('isUnique', []))
     );
   }
 

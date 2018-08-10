@@ -2,6 +2,8 @@ import { Component, OnInit, EventEmitter, Input, Output } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 import { Product } from 'shared/models/Product';
+import { CustomValidators } from 'shared/validators/custom.validators';
+import { ProductService } from 'shared/services/product.service';
 
 declare var $: any;
 
@@ -20,12 +22,12 @@ export class AdminProductFormComponent implements OnInit {
 
   form: FormGroup;
   
-  constructor(private fb: FormBuilder) { 
+  constructor(private fb: FormBuilder, private productService: ProductService) { 
     this.model = new Product();
-    this.createForm();
   }
 
   ngOnInit() {
+    this.createForm();
     this.bindModelToForm();
   }
 
@@ -33,7 +35,7 @@ export class AdminProductFormComponent implements OnInit {
     this.form = this.fb.group({
       id: [this.model.id],
       code: [this.model.code],
-      name: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(60)]], //should be unique
+      name: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(60)], CustomValidators.shouldBeUnique(this.productService)],
       description: ['', [Validators.required, Validators.minLength(15), Validators.maxLength(150)]],
       price: ['', [Validators.required]],
       stockQty: ['', [Validators.required, Validators.pattern("^[0-9]+$")]],

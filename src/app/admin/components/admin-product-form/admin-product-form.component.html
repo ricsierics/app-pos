@@ -27,6 +27,9 @@
               <div *ngIf="name.errors.maxlength">
                 Name should be maximum {{ name.errors.maxlength.requiredLength }} characters
               </div>
+              <div *ngIf="name.errors.shouldBeUnique">
+                  {{ name.value }} is already existing
+                </div>
             </div>
           </div>
 
