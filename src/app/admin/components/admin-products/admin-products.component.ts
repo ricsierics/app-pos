@@ -67,10 +67,11 @@ export class AdminProductsComponent implements OnInit, OnDestroy {
         },
         (error: any) => {
           this.spinnerService.hide();
+          this.modalComponent.showErrorGeneric();
           if(error.error instanceof Error){
-            console.log('Client-side error occured');
+            console.log('Client-side error occurred');
           } else {
-            console.log('Server-side error occured');
+            console.log('Server-side error occurred');
           }
         });
     });

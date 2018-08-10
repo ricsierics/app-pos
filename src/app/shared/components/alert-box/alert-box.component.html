@@ -11,7 +11,7 @@
         <p>{{ modal.body }}</p>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="onBtnSecondary()" *ngIf="modal.secondaryText"> {{ modal.secondaryText }}</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="onBtnSecondary()" *ngIf="modal.secondaryText.length > 0"> {{ modal.secondaryText }}</button>
         <button type="button" class="btn btn-primary" (click)="onBtnPrimary()">{{ modal.primaryText }}</button>
       </div>
     </div>

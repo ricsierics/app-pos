@@ -15,7 +15,9 @@ export class AlertBoxComponent implements OnInit {
 
   sender: any;
 
-  constructor() { }
+  constructor() { 
+    this.modal = new Modal("defaultId", "defaultTitle", "defaultBody", "defaultSecondary", "defaultPrimary");
+  }
 
   ngOnInit() {
   }
@@ -35,5 +37,13 @@ export class AlertBoxComponent implements OnInit {
   show(sender?: any){
     this.sender = sender;
     $('#' + this.modal.id).modal('show');
+  }
+
+  showErrorGeneric(){
+    this.modal.secondaryText = "";
+    this.modal.primaryText = "Close";
+    this.modal.title = "Error";
+    this.modal.body = "An error has occurred";
+    this.show();
   }
 }
