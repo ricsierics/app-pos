@@ -80,6 +80,7 @@ export class ShoppingCartComponent implements OnInit, OnDestroy {
 
   //WARNING: Fat method / need transaction scope
   checkOut(order: Order){
+    this.orderSummaryComponent.dismiss();
     this.spinnerService.show();
     console.log("CHECK OUT initialized...");
     this.checkOutSubscription = this.cartService.checkOutCart().subscribe(
@@ -89,7 +90,6 @@ export class ShoppingCartComponent implements OnInit, OnDestroy {
 
         this.orderService.addOrder(order).subscribe(() => {
           this.clearCart(true);
-          this.orderSummaryComponent.dismiss();
           this.spinnerService.hide();
 
           this.modal.secondaryText = null;

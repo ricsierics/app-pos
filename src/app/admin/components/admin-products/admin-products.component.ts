@@ -54,7 +54,7 @@ export class AdminProductsComponent implements OnInit, OnDestroy {
 
   //Warning: Nested subscribe / fat method
   onDeleteProduct(selectedProduct: Product){
-    this.modal.body = this.modal.body.replace("?", ` you want to delete ${selectedProduct.name}?`);
+    this.modal.body = `Are you sure you want to delete ${selectedProduct.name}?`;
     this.modalComponent.show();
 
     this.deleteProductSubscription = this.modalComponent.onBtnPrimaryEmitter.subscribe(() => {
@@ -76,7 +76,7 @@ export class AdminProductsComponent implements OnInit, OnDestroy {
         });
     });
   }
-
+  
   isExpired(dateString: string): boolean{
     if(dateString){
       return new Date(dateString) < new Date();
