@@ -10,18 +10,11 @@ import { AdminEditProductComponent } from 'admin/components/admin-edit-product/a
 import { AdminAuthGuard } from 'admin/services/admin-auth-guard.service';
 import { AdminRoutingModule } from 'admin/admin-routing.module'
 
-//import { RouterModule } from '@angular/router';
-//import { AuthGuard } from '../core/services/auth-guard.service';
-
 @NgModule({
   imports: [
     CommonModule,
     SharedModule,
     AdminRoutingModule
-    // RouterModule.forChild([
-    //   { path: 'admin/products' , component: AdminProductsComponent, canActivate: [AuthGuard, AdminAuthGuard] },
-    //   { path: 'admin/orders' , component: AdminOrdersComponent, canActivate: [AuthGuard, AdminAuthGuard] }
-    // ])
   ],
   declarations: [
     AdminOrdersComponent, 

@@ -9,19 +9,11 @@ import { OrderSummaryComponent } from 'shopping/components/order-summary/order-s
 import { MyOrdersComponent } from 'shopping/components/my-orders/my-orders.component';
 import { ShoppingRoutingModule } from 'shopping/shopping-routing.module';
 
-//import { RouterModule } from '@angular/router';
-//import { AuthGuard } from 'core/services/auth-guard.service';
-
 @NgModule({
   imports: [
     CommonModule,
     SharedModule,
     ShoppingRoutingModule
-
-    // RouterModule.forChild([
-    //   { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
-    //   { path: 'my/orders', component: MyOrdersComponent, canActivate: [AuthGuard] }
-    // ])
   ],
   declarations: [
     ProductsComponent,

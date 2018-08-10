@@ -9,12 +9,12 @@ import { ShoppingModule } from 'shopping/shopping.module';
 import { NotFoundModule } from 'not-found/not-found.module';
 
 const routes: Routes = [
-    { path: '', component: HomeComponent, canActivate: [AuthGuard] },
     { path: 'admin/orders', loadChildren:() => AdminModule },
     { path: 'admin/products', loadChildren:() => AdminModule },
     { path: 'login', loadChildren:() => CoreModule },
     { path: 'home', loadChildren:() => ShoppingModule },
     { path: 'my', loadChildren:() => ShoppingModule },
+    { path: '', component: HomeComponent, canActivate: [AuthGuard] },
     { path: 'not-found', loadChildren:() => NotFoundModule },
     { path: '**', redirectTo: 'not-found' } 
 ];
