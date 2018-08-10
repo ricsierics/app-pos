@@ -16,9 +16,7 @@ export class CartService {
 
   constructor(private productService: ProductService, private authService: AuthService) {
     this.cart = new Cart;
-    this.authService.getCurrentUser().subscribe(
-      user => this.cart.user = user
-    );
+    this.assignCartUser();
 
     console.log("Cart service initialized:");
     console.log(this.cart);
@@ -62,6 +60,7 @@ export class CartService {
   }
 
   getCart(): Cart{
+    this.assignCartUser();
     return this.cart;
   }
 
@@ -95,6 +94,12 @@ export class CartService {
 
   private getGroupedItemById(productId: number): GroupedItem{
     return this.cart.items.get(productId);
+  }
+
+  private assignCartUser(){
+    this.authService.getCurrentUser().subscribe(
+      user => this.cart.user = user
+    );
   }
 }
 

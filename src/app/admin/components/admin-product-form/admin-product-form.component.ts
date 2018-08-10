@@ -1,5 +1,5 @@
 import { Component, OnInit, EventEmitter, Input, Output } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, ValidationErrors } from '@angular/forms';
 
 import { Product } from 'shared/models/Product';
 import { CustomValidators } from 'shared/validators/custom.validators';
@@ -21,7 +21,7 @@ export class AdminProductFormComponent implements OnInit {
   @Input() isEditMode: boolean;
 
   form: FormGroup;
-  
+
   constructor(private fb: FormBuilder, private productService: ProductService) { 
     this.model = new Product();
   }
@@ -35,7 +35,7 @@ export class AdminProductFormComponent implements OnInit {
     this.form = this.fb.group({
       id: [this.model.id],
       code: [this.model.code],
-      name: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(60)], CustomValidators.shouldBeUnique(this.productService)],
+      name: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(60)], CustomValidators.shouldBeUnique(this.productService, this.isEditMode, this.model.name)],
       description: ['', [Validators.required, Validators.minLength(15), Validators.maxLength(150)]],
       price: ['', [Validators.required]],
       stockQty: ['', [Validators.required, Validators.pattern("^[0-9]+$")]],
