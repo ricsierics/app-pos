@@ -62,7 +62,7 @@ export class ProductsComponent implements OnInit {
   onSearch(keyword: string){
     if(keyword.trim()){
       console.log(`Keyword: ${keyword}`);
-      this.filteredProducts = this.products.filter(x => x.name.includes(keyword.trim()));
+      this.filteredProducts = this.products.filter(x => x.name.toLowerCase().includes(keyword.trim().toLowerCase()));
     } else
       this.filteredProducts = this.products;
   }
